@@ -1,0 +1,113 @@
+# 상속처리
+1. 상속이란?
+  1) 현실세계
+  		부모가 자식에게 물려주는 행위
+  		부모가 자식을 선택해서 물려줌
+  2) 객체 지향 프로그램
+    	자식(하위, 파생) 클래스가 부모(상위)클래스의 멤버를 물려받는 것
+    	자식이 부모를 선택해서 물려받는것
+    	상속 대상 : 부모의 필드와 메소드, 생성자(super()로 호출 가능)
+2. 상속 개념의 활용
+  1) 상속의 효과
+    부모 클래스 재사용해 자식 클래스를 빨리 개발 가능
+    반복된 코드를 중복 줄임
+    유지 보수 편리성제공 : 추상 클래스, 인터페이스 활용시 기존 소스에 영향을 끼치지 않으면서 추가 개발의 효울을 더할 수 있다.
+    객체 다형성 구현 가능
+  2) 상속 대상 제한
+    부모 클래스의 private 접근 갖는 필드와 메소드 제외(간접 접근해서 활용 가능)
+    부모 클래스가 다른 패키지에 있을 경우, default 접근 갖는 필드와 메소드 제외
+    default 접근제어자인 경우, 외부 패키지에서는 접근 불가
+    protected인 경우 상속하지 않으면 외부 패키지에서 접근 불가
+    
+3. 상속 처리 기본 형식
+	class 상위 클래스{
+		필드
+		생성자(){}
+		메서드
+	}
+	class 하위 클래스 extends 상위 클래스 {
+		// 상위 클래스가 가지고 있는 멤버들이 선언된 것과 동일하다.(접근자 제한 있음)
+	}
+4. 상속에서 특별한 접근제어자 protected
+	1) 일반적인 클래스 상속의 범위 특정한 경우애 처리될 수 있게 처리하였기 때문이다.
+	2) 접근 제어자
+		private : 외부 클래스 접근 불가
+		X : 패키지가 같은 클래스와 그 멤버에서 접근 가능
+		protected : 상속관계에 있는 클래스의 멤버만 외부 클래스에서 접근 가능할 때, 선언
+		public : 외부 패키지에서도 클래스와 멤버에서 접근 가능
+		
+# 접근제어자 선녀와 나무꾼
+1. 같은 패키지(연민의 정)
+	사슴 나무꾼
+2. 다른 패키지
+	사냥꾼
+3. 접근 제어자
+	private 선녀날개옷 숨긴 장소
+	
+# 가정을 꾸린 행복한 나무꾼
+
+1. 나무꾼의 집(패키지)
+	나무꾼, 선녀, 아들2(상속), 막내딸(상속), 노모
+	private String privSec = "개인적인 비밀내용";
+	String outHomeSec = "우리 가족이 사용하는 돈은 뒷마당에 있음";
+	protected String inheritSec = "상속할 재산 배분 내용";
+	public String announce = "우리 막내딸이 5월의 신부가 됩니다";
+	
+	public void callWoodInfo(){
+		WoodCutter wc = new WoodCutter();
+		System.out.println("private:"+wc.privSec); 
+		System.out.println("default(x):"+wc.outHomeSec); 
+		System.out.println("protected:"+wc.inheritSec); 
+		System.out.println("public:"+wc.announce); 
+	}
+	
+	// 상속 클래스
+	public void callWoodInfo2(){
+		System.out.println("private:"+privSec); 
+		System.out.println("default(x):"+outHomeSec); 
+		System.out.println("protected:"+inheritSec); 
+		System.out.println("public:"+announce); 
+	}
+		
+	1) private: 개인적인 비밀(행복한 현실 가정)
+	 			나무꾼 객체만 가지고 있어야 하는 정보
+	 			ps) 상속을 하더라도 직접 접근 불가
+	 	
+	2) x :가족들끼리만 가지고 있어야할 정보 : 가족재산
+		  가족내 비밀
+	   	  가족 재산
+	 	  ps) 상속을 하더라도 외부 패키지에서는 접근 불가
+		
+	3) protected : 상속 재산이 어디 있는지?
+				   상속에 관련된 내용으로 같은 집에 있는 구성원과 함께 외부 패키지에 있는 아들1에게도 접근이 가능한 접근제어자
+	4) public : 막내딸이 결혼식의 축하 내용을 모두 다 공지
+	
+2. 나무꾼의 이웃
+#3. 사냥꾼
+4. 아들1의 집
+	아들1(상속), 며느리
+
+# 2차 전체 access 처리
+javaexp.a08_relation.access
+하위에 패키지
+ourhome
+	Father
+		private
+		X
+		protected
+		public
+		
+		void callFatherInfo(){
+			Father f = new Father():
+		}
+		// 상속자
+		void callFatherInfo2(){
+		
+		}
+sisterhome
+	Sister
+unclehome
+	
+	
+	
+	
