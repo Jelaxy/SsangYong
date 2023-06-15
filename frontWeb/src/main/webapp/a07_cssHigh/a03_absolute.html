@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		/*
+		# 절대 위치 지정
+		1. 특정 요소 태그를 포함하고 있는 위치기준을 절대 위치를 기준점으로 지정하여 위치를 지정하는 부분
+		2. 기본형식
+			선택자{posoition:absolute:위치속성...}
+			위치 속성은 top, bottom, left, right 모두 다 설정할 수 있음(전체화면 설정)
+			z-index : 보이는 우선순위를 설정하는 옵션으로 해당값이 높을 수록 화면상 가장 먼저 보이게 한다
+		*/
+		div{width: 100px;height: 200px; position: absolute;
+			background-color: green;}
+			/*
+			ex) 50px, 50px 크기를 기준으로 노랑/오렌지/핑크로 절대 위치를 설정하여
+			*/
+		div.cls01{width: 50px;height: 50px; position: absolute; left: 100px;
+			background-color: yellow;}
+			/*
+			ex) 카드 이미지 3장을 화면에 출력하여 겹치게 처리 가장 상단에 있는 이미지를 가장 먼저 보이게 하세요
+			*/
+		div.cls02{width: 50px;height: 50px; position: absolute; bottom: 100px;
+			background-color: yellow;}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div style="background-color: red; top: 20px; left: 20px;"></div>
+		<div style="background-color: blue; top: 40px; left: 40px;"></div>
+		<div class="cls01" style="background-color: orange; top: 20px; left: 20px;"></div>
+		<div class="cls01" style="background-color: pink; top: 20px; left: 20px;"></div>
+		<img style="z-index:3;" src="/frontweb/a00_img/spade-2.png" width="100" height="200"/>
+		<img style="z-index:3;" src="/frontweb/a00_img/spade-2.png" width="100" height="200"/>
+
+
+	</body>
+	</html>

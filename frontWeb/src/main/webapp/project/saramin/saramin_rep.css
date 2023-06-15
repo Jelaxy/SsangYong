@@ -1,0 +1,58 @@
+body {
+    margin: 10% auto;
+    padding: 10%;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  div.saramin {
+    margin: 30px 0;
+    text-align: left;
+  }
+  input::placeholder{
+    color: #2d65f2;
+  }
+  div.saramin.float {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  label {
+    display: block;
+    padding-bottom: 10px;
+    font-size: 1.25em;
+  }
+  input, select {
+    border-radius: 2px;
+    border: 2px solid #373f57;
+    box-sizing: border-box;
+    font-size: 1.25em;
+    color: #2d65f2;
+    width: 100%;
+    padding: 10px;
+  }
+  
+  div.saramin.float2 label,
+  div.saramin.float2 input {
+    width: 50%;
+    float: left;
+    margin-right: 20px;
+  }
+  
+  hr {
+    border: 1px solid #3157dd;
+  }
+  
+  button {
+    height: 50px;
+    background: #3157dd;
+    border: none;
+    color: white;
+    font-size: 1.25em;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    border: 2px solid #00AAFF;
+  }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        # 속성 처리
+        1. 기본 형식
+            선택자{속성:속성값;}
+        2. 공통 속성값
+          0) 색상이나 단위 처리 내용은 html 태그의 기본속성에서도 적용되는 공통적인 속성값이다
+          1) 색상
+            - 색이름 표현 : css3표준으로 140개의 색의 이름을 정하고 있음
+                ex) red, green, blue
+            - 16진수 코드로 표현: #6A2BE2 ==> 2개 단위로 색상비율 조합
+                R :6A (0~255)
+                Green :2B (0~255)
+                Blue :E2 (0~255)
+            - 10진수 코드와 RGB()로 표현
+                rgb(138,43,226) : red, green, blue로 3가지 색상을 조합해서 표현
+                0~225 RGB색상 표현 : js에서 색상값을 호출하면 이 형식으로 호출
+          2) 크기
+            - 상대적
+                상대적 크기라는 것은 해당선택자(태그)가 가지고 있는 고유의 크기를 기주느로 몇배, 몇%로 지정하여 처리하는 것을 말한다.
+                em: 배수 ex) font-size:3em; 현재 기본 폰트의 3배 크기
+                % : 퍼센트 ex) font-size:500%; 현재 폰트의 500% 크기
+            - 절대적
+                절대적 크기는 일반적인 길이 측정단위를 기준으로 설정한느 것을 말한다
+                1) px : 픽셀수 ex) font-size 10px; 10픽셀 크기
+                2) cm : 센티미터 ex) margin-left:5cm; 왼쪽여백 5cm
+                3) mm : 밀리미터 ex) margin-top:20mm; 상단여백 20mm
+                4) in : 1in = 2.54cm = 96px; ex) margin-left:2in;
+                5) pt : 포인터 1pt = 1in의 1/72 크기 ex) margin-bottom:20pt;
+                6) pc : 피카소 (picaso) 1pc = 20pt; ex) font-size:1p;x
+                7) deg : 각도 시계방향 20도 회전 ex) transfrom:rotate(200deg);
+        */
+        .cls01{font-size: 1em;}
+        .cls02{font-size: 2em;}
+        .cls03{font-size: 3em;}
+        .cls04{font-size: 100%;}
+        .cls05{font-size: 200%;}
+        .cls06{font-size: 300%;}
+        /*
+        h2{background-color: red;}
+        h3{background-color: #6A2BE2}
+        h4{background-color: rgb(138,43,226)}
+        ex) table(2x2)의 넓이와 높이 속성으로 지정하여 위에 있는 상대/절대값으로
+            각 셀의 넓이 col 속성, css 높이 속성을 이용해서 상대적
+            크기와 절대적 크기를 확인하세요
+        */
+
+    </style>
+</head>
+<body>
+    <h1>절대적 크기</h1>
+    <h2 style="font-size:10px;">10px</h2>
+    <h2 style="font-size:20px;">20px</h2>
+    <h2 style="font-size:1cm;">1cm</h2>
+    <h2 style="font-size:5mm;">5mm</h2>
+    <h2 style="font-size:20pt;">20pt</h2>
+    <h2 style="font-size:1pc;">1pc</h2>
+
+    <h1>상대적 크기</h1>
+    <h1>표준 크기</h1>
+    <h1 class="cls01">상대적 1em</h1>
+    <h1 class="cls02">상대적 2em</h1>
+    <h1 class="cls03">상대적 3em</h1>
+    <h2 class="cls01">상대적 1em</h2>
+    <h2 class="cls02">상대적 2em</h2>
+    <h2 class="cls03">상대적 3em</h2>
+    <h1 class="cls04">상대적 3em</h1>
+    <h1 class="cls05">상대적 3em</h1>
+    <h1 class="cls06">상대적 3em</h1>
+    <h2 class="cls04">상대적 3em</h2>
+    <h2 class="cls05">상대적 3em</h2>
+    <h2 class="cls06">상대적 3em</h2>
+    <h2>색이름 표현</h2>
+    <h3>16진수 코드</h3>
+    <h4>RGB()형식표현</h4>
+    <table>
+        <tr><td>1</td><td>2</td></tr>
+        <tr><td>1</td><td>2</td></tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<html>
+<head>
+<title> Reviewer </title>
+<style type="text/css">
+body
+{
+background-image: url("reviewerbackground.jpg");
+background-attachment: fixed;
+font-family: verdana;
+color:white;
+text-shadow: black 0.1em 0.1em 0.2em;
+line-height: 1.5;
+font-size: 100%;
+}
+h1
+{
+color: white;
+font-family: verdana;
+text-shadow: black 0.1em 0.1em 0.2em;
+text-align: center;
+line-height: 1.5;
+}
+p
+{
+border: none;
+width: 90%;
+line-height: 1.5;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px;
+-moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+box-shadow: 0 0 5px rgba(0,0,0,0.5);
+background: tan;
+padding: 3px;
+text-align: left;
+}
+</style>
+
+<script type="text/javascript">
+function question1() {
+   var option = document.querySelector('input[name = "question1"]:checked').value;
+   if (option == 'd') {
+      alert("That's the correct answer!");
+   } 
+   else {
+      alert ("Oops! try again!");
+   }
+   }
+</script>
+</head>
+<body link="white" vlink="white">
+
+<br>
+<h1> Reviewer  </h1> </br>
+
+<center> 
+<p> 1. (Question- Answer will be D, the 4th radio button)
+<br>
+<br> 
+<input type="radio" name="question1" value="a"> choice a
+<br>
+<input type="radio" name="question1" value="b"> choice b
+<br>
+<input type="radio" name="question1" value="c"> choice c
+<br>
+<input type="radio" name="question1" value="d"> choice d
+<br>
+<br>
+<input class="button" type="button" onclick="question1()" name="question1" value="Submit">
+</p> </center>
+<br>
+
+</body>
+</html>
