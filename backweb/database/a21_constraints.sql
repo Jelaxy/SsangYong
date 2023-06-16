@@ -71,6 +71,7 @@ CREATE TABLE student04(
    eng NUMBER,
    math NUMBER
 );
+
 SELECT *
 FROM  sys.all_constraints
 WHERE table_name = 'STUDENT04';

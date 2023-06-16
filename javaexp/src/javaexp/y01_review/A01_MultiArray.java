@@ -18,6 +18,7 @@ public class A01_MultiArray {
 		
 		
 		
+		
 		// 2. 각 호차별 좌석에 예약 내역 출력
 		//   	1) 외부 for문을 호차처리 : 바깥 for문의 길이
 		//         trains.length
