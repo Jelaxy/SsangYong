@@ -64,23 +64,22 @@ name="key" value="val"
 	2) back단(jsp)
 		조건문에서 처리
 		reponse.sendRedirect("a02.jsp?pname=사과&price=3000");			    
-6. 단일 데이터 전송과 다중 데이터 전송
+6. 단일 데이터 전송과 다중 데이터 전송(String value = requst.getParameterValue("");)
 	1) 순수 query string으로 처리
 	2) form 요소 객체
 		<input type="text" name="req01">
 		<input type="text" name="req01">
 		<input type="text" name="req01">
 		
-		<input type="checkbox" name="ck01">
+		<input type="checkbox" name="ck01"> checked가 된 다중
 		<input type="checkbox" name="ck01">
 		<input type="checkbox" name="ck01">
 		
-		<select name="req02" multiple>
+		<select name="req02" multiple> ctrl로 선택한 다눙
 			<option>사과</option>
 			<option>바나나</option>
 			<option>딸기</option>
 			<option>오렌지</option>
-			<option>사과</option>
 7. form요소객체, dao와 연동하여
 	1) 조회
 	2) 등록
