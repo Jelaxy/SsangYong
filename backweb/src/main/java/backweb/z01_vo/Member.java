@@ -1,7 +1,7 @@
 package backweb.z01_vo;
 
 import java.util.Date;
-
+//backweb.z01_vo.Member
 public class Member {
 	private String id;
 	private String pass;
@@ -12,6 +12,22 @@ public class Member {
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	// 로그인시 사용
+	public Member(String id, String pass) {
+		this.id = id;
+		this.pass = pass;
+	}
+	// 등록을 위한 생성자
+	public Member(String id, String pass, String name, int point, String auth) {
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.point = point;
+		this.auth = auth;
+	}	
+	
+	// 로그인 후, 데이터 가져올 때 사용.
 	public Member(String id, String pass, String name, int point, String auth, Date regdate) {
 		this.id = id;
 		this.pass = pass;
@@ -19,6 +35,15 @@ public class Member {
 		this.point = point;
 		this.auth = auth;
 		this.regdate = regdate;
+	}
+	
+	public Member(String id, String pass, String name, String auth, int point) {
+		super();
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.auth = auth;
+		this.point = point;
 	}
 	public String getId() {
 		return id;

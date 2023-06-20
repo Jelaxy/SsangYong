@@ -32,3 +32,4 @@ INSERT INTO STUDENT05 values('QA-'||seq01.nextval);
 SELECT * FROM STUDENT05;
 
 
+

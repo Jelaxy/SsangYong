@@ -1,5 +1,5 @@
 package backweb.z01_vo;
-
+// backweb.z01_vo.Product
 public class Product {
 	private String pname;
 	private int price;

@@ -7,7 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>드디어 form으로 받았습니다</h1>
-	<h2>받은이름:<%= %></h2>
+<%--
+# url ==> form
+	a03_formRev.jsp?pname=사과&price=3000
+
+ --%>
+ 	<h2>물건명:<%=request.getParameter("pname") %></h2>
+ 	<h2>가격:<%=request.getParameter("price") %></h2>
+
 </body>
 </html>

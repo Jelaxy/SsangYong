@@ -13,12 +13,13 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public class A01_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    // jsp의 declaration에 처리하는 부분
-	// 클래스의 전역변수나 메서드 선언
-	String name = "홍길동";
+	// jsp의 declaration에 처리하는 부분
+	// 클래스의 전역변수나 메서드 선언..
+	String name="홍길동";
 	public String call() {
-		return ;
+		return name;
 	}
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,18 +32,22 @@ public class A01_Servlet extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request,
-						   HttpServletResponse response) throws ServletException, IOException {
+			               HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// jsp는 server()를 둘러싸고 있어서
+		// jsp는 server()를 둘러싸고 있어서 
 		// 처리되는 코드이다.
-		// response 객체는 client에 특정한 코드를 전달할 때, 사용된다.
-		// Stream 객체 중에 쓰기 객체인 Writer 객체를 만들어주어
+		// response 객체는 client에 특정한 코드를 전달할 때,
+		// 사용된다.
+		// Stream객체중에 쓰기 객체인 Writer객체를 만들어 주어
 		// client에 쓴 내용을 전달한다.
-		Writer out = response.getWriter();
-		// client에 출력을 전달
-		out.write("hello!!!"+call());
+		Writer out =  response.getWriter();
+		// client에 출력을 전달..
+		out.write("hello!!"+call());
 		// ex) A02_Sevlet2.java
-		// 로 만들고 Have a nice day를 브라우저 화면에 출력
+		//     로 만들고, Have a nice day를를 브라우저
+		//     화면에 출력하세요.
+		
+		
 	}
 
 }
