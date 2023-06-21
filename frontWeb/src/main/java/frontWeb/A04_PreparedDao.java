@@ -185,7 +185,12 @@ public class A04_PreparedDao {
             }
         } catch (SQLException e) {
             System.out.println("DB 오류: " + e.getMessage());
-            DB.rollback(con);
+            try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         } catch (Exception e) {
             System.out.println("일반 오류: " + e.getMessage());
         } finally {
@@ -212,7 +217,12 @@ public class A04_PreparedDao {
             }
         } catch (SQLException e) {
             System.out.println("DB 오류: " + e.getMessage());
-            DB.rollback(con);
+            try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         } catch (Exception e) {
             System.out.println("일반 오류: " + e.getMessage());
         } finally {

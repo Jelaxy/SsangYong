@@ -74,6 +74,13 @@
 				document.querySelector("form").submit();
 			} 
 		</script>
+		<%--
+		# front back 연결 ㅋ도ㅡ
+		1. jsp로 html이 만들어진 결과로
+		2. 화면단에서 처리된다는 내용 기억
+		
+		
+		 --%>
 <%--
 [1단계:코드] 3. salgrade 테이블을 확인하여, 해당 항목에 맞는 속성으로 form 화면을 구성하고, 입력 후, 확인시, 요청값 처리후,
       Salgrade 객체에 등록이 되어 출력되게 처리하세요.
