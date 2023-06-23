@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="backweb.z01_vo.Member"%>
+    import="backendWeb.z01_vo.Member"%>
     
 <!DOCTYPE html>
 <html>
@@ -44,7 +44,7 @@
 	if(id!=null){
 		int point = Integer.parseInt(pointS);
 		// vo 객체로 받아들이기..
-		Member m = new Member(id, pass, name, auth, point);
+		Member m = new Member(id,pass,name,auth,point) ;
 		log("# 회원등록 VO로 성공#");
 		log(m.getId());
 		log(m.getPass());

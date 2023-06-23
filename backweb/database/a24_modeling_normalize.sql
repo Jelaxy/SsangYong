@@ -1,10 +1,10 @@
 /*
 # 정규화
-1. 정규화와 이상 현상
-	1) 이상 현상
+1. 정규화와 이상현상
+	1) 이상현상
 		불필요한 데이터의 중복으로 인해 릴레이션(테이블간의 연관관계)에
 		대한 데이터의 삽입, 수정, 삭제 연산을 수행할 때, 발생하는
-		부작용을 말한다.
+		부작용(결합이 발생)을 말한다.
 	2) 정규화 과정
 		이러한 이상 현상을 제거하면서 데이터베이스를 무결성있게 설계해
 		나가는 과정을 말한다.
@@ -41,9 +41,9 @@
 		많다.
 	4) 정규화의 핵심을 1~3정규화에서 사용되는 함수 개념부터 확인하여야
 		한다.
-		- 데이터의 원자성
-		- 완전함수 종속성
-		- 이행적 함수 종속성
+		- 데이터의 원자성(1정규화)
+		- 완전함수 종속성(2정규화)
+		- 이행적 함수 종속성(3정규화)
 		
 # 제1정규화 처리
 1. 릴레이션의 모든 속성이 더는 분해되지 않는 원자값만 가지면
@@ -227,10 +227,139 @@ ex) 아래테이블을 정규화과정을 처리하ㅔ
 		
 		
 	 
+# 제2정규화 대상 테이블
+주문 (Order)
+----------------------------
+주문번호 (OrderID, PK)
+고객번호 (CustomerID)
+고객이름 (CustomerName)
+주소 (Address)
+제품번호 (ProductID, FK)
+==> 완전 함수 종속성을 처리하여
+주문(Order)
+--------------------
+주문번호 (OrderID, PK)
+고객번호 (CustomerID FK)
+제품번호 (ProductID, FK)
+
+고객정보(Customer)
+------------------------
+고객번호 (CustomerID)
+고객이름 (CustomerName)
+주소 (Address)
+
+
+
+제품 (Product)
+----------------------------
+제품번호 (ProductID, PK)
+제품명 (ProductName
+
+==========================
+[테이블: 학생_성적]
+학생_코드 (기본 키)
+학생_이름
+과목_코드
+과목_이름
+성적
+
+===========================
+"수강과목" (CourseEnrollment)
+
+학번 (StudentID, 기본키)
+과목코드 (CourseCode, 기본키)
+과목명 (CourseName)
+담당교수 (Professor)
+학점 (Credits)
+수강년도 (Year)
+학기 (Semester)
+==> ex) 제2정규화를 처리하여 분리된 데이터로 만드세요..
+모든 컬럼들이 기본키에 완전함수 종속성을 가지게 처리..
+"수강과목" (CourseEnrollment)
+학번 (StudentID, 기본키)    
+과목코드 (CourseCode, 기본키)  두개복함키로(식별관계로 처리)
+수강년도 (Year)
+학기 (Semester)
+
+과목 (Course)
+과목코드 (CourseCode, 기본키)
+과목명 (CourseName)
+담당교수 (Professor)
+학점 (Credits)
+
+==============================
+주문(Order)
+주문 번호(OrderID) (기본 키)
+고객 번호(CustomerID)
+고객 이름(CustomerName)
+상품 번호(ProductID)
+상품 이름(ProductName)
+주문 수량(Quantity)
+주문 일자(OrderDate)	
+
+ex) 제2정규화 처리
+고객정보(Customers)
+고객 번호(CustomerID)
+고객 이름(CustomerName)
+
+상품정보( Products)
+상품 번호(ProductID)
+상품 이름(ProductName)
+
+주문정보(Order)
+주문 번호(OrderID)
+고객 번호(CustomerID)
+상품 번호(ProductID)
+주문 수량(Quantity)
+주문 일자(OrderDate)
+
+
+주문상세(OrderDetail)
+----------------
+주문ID (OrderID)
+상품ID (ProductID)
+수량 (Quantity)
+가격 (Price)
+상품명 (ProductName)
+배송지 (DeliveryAddress)
+
+ex) 제2정규화 처리하세요
+상품(Product)
+---------------
+상품ID (ProductID)
+상품명 (ProductName)
+가격 (Price)
+
+주문상세(OrderDetail)
+주문ID (OrderID)
+상품ID (ProductID)
+수량 (Quantity)
+배송지 (DeliveryAddress)
+
+
+
+
+
+
+
+
+
+
+===========================
+예시 테이블: "대여정보" (RentalInfo)
+
+대여ID (RentalID, 기본키)
+자전거ID (BikeID)
+대여자ID (UserID)
+대여일시 (RentalDateTime)
+반납일시 (ReturnDateTime)
+대여지점 (RentalLocation)
+반납지점 (ReturnLocation)
+대여요금 (RentalFee)	
 	
-	
-	
- * 
+
+
+
  * */
 
 

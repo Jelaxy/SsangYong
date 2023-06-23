@@ -1,5 +1,6 @@
 package backweb.a01_database;
-// backendWeb.a01_dao.A05_MemberDao
+// backweb.a01_database.a01_dao.A05_MemberDao
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,32 +17,6 @@ public class A05_MemberDao {
 	private ResultSet rs;
 	// // Product 테이블(물건명,가격,갯수) ==> 
 	// 로그인 처리 메서드 정의
-	
-	   public boolean getMemberid(String id) {
-		    boolean exists = false;
-		    Member member = null;
-		    String sql = "SELECT * FROM member02 WHERE id = ?";
-		    try {
-		        con = DB.con();
-		        pstmt = con.prepareStatement(sql);
-		        pstmt.setString(1, id);
-		        rs = pstmt.executeQuery();
-		        if (rs.next()) {
-		            exists = true;
-		        }
-		        rs.close();
-		        pstmt.close();
-		        con.close();
-		    } catch (SQLException e) {
-		        System.out.println("DB에러: " + e.getMessage());
-		    } catch (Exception e) {
-		        System.out.println("기타예외: " + e.getMessage());
-		    } finally {
-		        DB.close(rs, pstmt, con);
-		    }
-		    return exists;
-		}
-	
 	public Member login(String id, String pass) {
 		Member mem = null;
 		String sql = "SELECT * FROM member02\r\n"
@@ -77,8 +52,6 @@ public class A05_MemberDao {
 		}
 		return mem;
 	}
-	
-	
 	public void insertMember(Member ins) {
 		int isInsert = 0;
 		String sql = "INSERT INTO member02 "
@@ -109,10 +82,6 @@ public class A05_MemberDao {
 			DB.close(rs, pstmt, con);
 		}
 	}
- 
-
-
-	   
 	public void updateMember(Member ins) {
 		int isInsert = 0;
 		String sql = "INSERT INTO member02 "

@@ -21,47 +21,49 @@
 	2. 이 경우, 초기 화면과 요청값이 전달되었을 때
 		화면을 감안하여 요청데이터를 처리를 하여야 한다.
 		- 조건을 처리하여, null 값이 발생하지 않게 하여야 한다.
-		
-	
 	 --%>
 	<%
+	
 	String ename = request.getParameter("ename");
 	String job = request.getParameter("job");
-	// ename,job이 입력이 없는 초기화면에도 에러 없이 처리할 수 있게 처리
+	// ename, job이 입력이 없는 초기화면에도 에러 없이 처리할 수 있게
+	// 처리..
+	// 초기 화면에 대한 처리
 	if(ename==null) ename="";
 	if(job==null) job="";
 	
-	// 숫자형 데이터는 defualt로 0을 설정해서 초기화 하도록 한다.
+	// 숫자형 데이터는 default로 0으로 설정해서 초기화 하도록 한다.
 	/*
 	int num01 = 0;
-	if(num01Str!=null) num01 = Integer.parseInt(num01Str)
-			
+	if(num01Str!=null) num01 = Integer.parseInt(num01Str);
+	
 	ex) a20_buyInfo.jsp
-		구매물품
-		물건명:[]
-		가격:[]
-		갯수:[] [구매]
-	==> 아래에 테이블에 
-	물건명	가격		갯수		총액
-	@@		@@		@@		@@
+        구매물품
+		물건명:[  ]
+		가격:[  ]
+		갯수:[  ] [구매]
+		==> 아래에 테이블에
+		물건명  가격  갯수  총액
+		@@     @@   @@   @@
+	
 	*/
-	%>
-	<%--
-	 화면에 검색한 입력값을 다시 다음 페이징서 출력 필요
-	 value="<%=ename>"을 처리하여야 한다.
-	  --%>
+	
+	%> 
+	 
+	<%-- 화면에 검색한 입력값을 다시 다음 페이지에서 출력 필요
+		value="<%=ename%>"을 처리하여야 한다. --%>
     <div class="container mt-3">
-    	<h2>사원정보 등록</h2>
-    	<form action="" method="post">
+    	<h2>사원정보 조회</h2>
+    	<form method="post">
          	<div class="mb-3 mt-3">
             <label for="job">직책:</label>
             <input type="text" class="form-control" 
-      	     id="job" placeholder="직책 입력" value="<%=job %>" name="job">
+      	     id="job" placeholder="직책 입력" value="<%=job%>" name="job">
          	</div>
          	<div class="mb-3 mt-3">
             <label for="ename">사원명:</label>
             <input type="text" class="form-control" 
-      	     id="ename" placeholder="사원명 입력" value="<%=ename %>" name="ename">
+      	     id="ename" placeholder="사원명 입력" value="<%=ename%>" name="ename">
          	</div>
          	<button type="submit" class="btn btn-primary">조회</button>
      	</form>

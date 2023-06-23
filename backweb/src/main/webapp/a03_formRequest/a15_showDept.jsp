@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="backweb.z01_vo.Dept"
+    import="backendWeb.z01_vo.Dept"
     %>
 <!DOCTYPE html>
 <%
@@ -11,7 +11,7 @@ String dname = request.getParameter("dname");
 if(dname==null) dname = "";
 String loc = request.getParameter("loc");
 if(loc==null) loc = "";
-Dept d = new Dept(deptno, dname, loc);
+Dept d = new Dept(deptno,dname, loc);
 %>
 <%--
 1. 요청값 처리

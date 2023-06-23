@@ -11,30 +11,31 @@
 </head>
 <body>
     <div class="container mt-3">
-       <h2>사원정보 등록</h2>
-       <form action="a18_rev.jsp" method="post">
-            <div class="mb-3 mt-3">
-	            <label for="sname">이름:</label>
-	            <input type="text" class="form-control" 
-	              id="sname" placeholder="학생이름 입력" name="sname">
-            </div>
-            <div class="mb-3 mt-3">
-	            <label for="kor">국어:</label>
-	            <input type="number" class="form-control" 
-	              id="kor" placeholder="국어 점수 입력" name="kor">
-            </div>
-            <div class="mb-3 mt-3">
-            <label for="eng">영어:</label>
+    	<h2>성적 등록</h2>
+    	<form action="a18_rev.jsp" method="post">
+         	<div class="mb-3 mt-3">
+            <label for="name">이름:</label>
+            <input type="text" class="form-control" 
+      	     id="name" placeholder="학생 이름 입력" name="name">
+         	</div>    	
+    	
+         	<div class="mb-3 mt-3">
+            <label for="kor">국어점수:</label>
             <input type="number" class="form-control" 
-              id="eng" placeholder="영어 점수 입력" name="eng">
-            </div>
-            <div class="mb-3 mt-3">
-            <label for="math">수학:</label>
+      	     id="kor" placeholder="국어점수 입력" name="kor">
+         	</div>
+         	<div class="mb-3 mt-3">
+            <label for="eng">영어점수:</label>
             <input type="number" class="form-control" 
-              id="math" placeholder="수학 점수 입력" name="math">
-            </div>
-            <button type="submit" class="btn btn-primary">성적 등록</button>
-        </form>
-
+      	     id="eng" placeholder="영어점수 입력" name="eng">
+         	</div>
+         	<div class="mb-3 mt-3">
+            <label for="math">수학점수:</label>
+            <input type="number" class="form-control" 
+      	     id="math" placeholder="수학점수 입력" name="math">
+         	</div>         	
+         	<button type="submit" class="btn btn-primary">등록</button>
+     	</form>
+    </div>
 </body>
 </html>

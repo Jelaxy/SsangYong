@@ -8,69 +8,69 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Insert title here</title>
+    <%
+    // DB에서 가져온 데이터..
+    String name = "사과";
+    int price = 2000;
+    int cnt = 5;
+    %>
+    <script type="text/javascript">
+    var name = "<%=name%>"
+    var price = <%=price%>
+    var cnt = <%=cnt%>
+    function check01(){
+    	alert(name)
+    }
+    function check02(){
+    	alert(price)
+    }
+    function check03(){
+    	alert(cnt)
+    }
+    function check04(){
+    	var tot = price*cnt;
+    	if(tot>=50000){
+    		alert(tot+" 고가")	
+    	}else{
+    		alert(tot+" 저가")
+    	}   	
+    }
+    
+    </script>
 </head>
 <body>
-<%
-String pname = request.getParameter("pname");
-if(pname==null) pname="";
-
-String priceS = request.getParameter("price");
-int price = 0;
-if(priceS!=null) price = Integer.parseInt(priceS);
-
-String cntS = request.getParameter("cnt");
-int cnt = 0;
-if(cntS!=null) cnt = Integer.parseInt(cntS);
-
-int tot = price*cnt;
-%>
-
-<script type="text/javascript">
-	var name = "<%=pname%>"
-	var price = <%=price%>
-	var cnt = <%=cnt%>
-	
-</script>
     <div class="container mt-3">
-    	<h2 onclick="call01()">물건정보 등록</h2>
-    	<script type="text/javascript">
-	    	function call01(){
-	    		alert("서번단에서 온 이름"+name)
-	    	}
-    	</script>
-    	<form>
+    	<h1>구매 정보</h1>
+    	<h2 onclick="check01()">물건명 확인</h2>
+    	<h2 onclick="check02()">가격 확인</h2>
+    	<h2 onclick="check03()">갯수 확인</h2>
+    	<h2 onclick="check04()">고가 여부</h2>
+    	<form action="" method="post">
          	<div class="mb-3 mt-3">
-            <label for="pname">물건명:</label>
+            <label for="empno">사원번호:</label>
+            <input type="number" class="form-control" 
+      	     id="empno" placeholder="사원번호 입력" name="empno">
+         	</div>
+         	<div class="mb-3 mt-3">
+            <label for="ename">사원명:</label>
             <input type="text" class="form-control" 
-      	     id="pname" placeholder="물건명 입력" name="pname">
+      	     id="ename" placeholder="사원명 입력" name="ename">
          	</div>
-         	<div class="mb-3 mt-3">
-            <label for="price">가격:</label>
-            <input type="number" class="form-control" 
-      	     id="price" placeholde="가격 입력" name="price">
-         	</div>
-         	<div class="mb-3 mt-3">
-            <label for="cnt">갯수:</label>
-            <input type="number" class="form-control" 
-      	     id="cnt" placeholder="갯수 입력" name="cnt">
-         	</div>
-        <button type="submit" class="btn btn-primary">결제</button>
+         	<button type="submit" class="btn btn-primary">등록</button>
      	</form>
 		<table class="table table-striped table-hover">
 			<thead class="table-success">
 		      	<tr  class="text-center">
-				    <th>물건명</th>
-				    <th>가격</th>
-				    <th>갯수</th>
-				    <th>총액</th>
+				    <th>Firstname</th>
+				    <th>Lastname</th>
+				    <th>Email</th>
 		      	</tr>
 		    </thead>
 		    <tbody>
 			   	<tr  class="text-center">
-			        <td><%=pname %></td>
-			        <td><%=price %></td>
-			        <td><%=cnt %></td>
-			        <td><%=tot %></td>
+			        <td>John</td>
+			        <td>Doe</td>
+			        <td>john@example.com</td>
 			   	</tr>
 		 	</tbody>
 		</table>      	

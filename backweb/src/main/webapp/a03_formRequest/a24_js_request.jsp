@@ -72,12 +72,10 @@
 			*/
 			btnObj.onclick=function(){
 				// 코드로 전송 처리..
-				// 전송전에 유효성 처리가능/ 로직처리 가능
+				// 전송 전에 유효성 처리 가능/로직처리 가능..
 				document.querySelector("form").submit();
 			}
-
 		</script>   	
-
     </div>
 </body>
 </html>
