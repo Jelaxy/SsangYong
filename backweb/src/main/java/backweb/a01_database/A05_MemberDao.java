@@ -1,6 +1,5 @@
 package backweb.a01_database;
-// backweb.a01_database.a01_dao.A05_MemberDao
-
+// backweb.a01_database.A05_MemberDao
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

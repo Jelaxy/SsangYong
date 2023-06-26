@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="backendWeb.z01_vo.Member"%>
+    import="backweb.z01_vo.Member"%>
     
 <!DOCTYPE html>
 <html>

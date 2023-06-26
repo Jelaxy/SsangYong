@@ -18,8 +18,8 @@ import backweb.z01_vo.Manager;
 
 
 // ctrl+shift+o
-// backendWeb.z01_vo.Emp
-// backendWeb.a01_dao.A04_PreparedDao
+
+// backweb.a01_database.A04_PreparedDao
 public class A04_PreparedDao {
     private Connection con;
     private PreparedStatement pstmt;

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="backendWeb.z01_vo.Emp"
-    import="backendWeb.a01_dao.A04_PreparedDao"
+    import="backweb.z01_vo.Emp"
+    import="backweb.a01_database.A04_PreparedDao"
     import="java.util.*"
 
     

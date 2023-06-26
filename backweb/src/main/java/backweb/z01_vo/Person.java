@@ -1,5 +1,5 @@
 package backweb.z01_vo;
-
+// backweb.z01_vo.Person
 public class Person {
    private String name;
    private int age;
