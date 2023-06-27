@@ -27,7 +27,7 @@
         -moz-user-select: none;
         user-select: none;
       }
-
+	  @import '../reset.css';
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
