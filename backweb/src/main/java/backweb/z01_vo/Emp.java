@@ -2,6 +2,7 @@ package backweb.z01_vo;
 
 import java.util.Date;
 
+// backweb.z01_vo.Emp
 public class Emp {
 	private int empno;
 	private String ename;

@@ -9,47 +9,54 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Insert title here</title>
 </head>
-<script type="text/javascript">
-	// ex) 	a03_callId.jsp
-	//		id:[	] [등록여부확인]
-	//		z03_data.jsp
-	//		himan,goodMan,higirl
-	//		데이터와 동일 여부를 확인해서 없으면 등록가능, 있으면 등록된 아이디 입니다 처리
-	document.addEventListener('keydown',
-	function(event){
-		if(event.keyCode === 13){
-			event.preventDefault();
-		};
-	}, true);
-	
-	function ckIdKey(){
-		if(event.keycode==13){
-			ckID()
-		}
-	}
-	 	function ckID(){
-	 		var idVal = document.querySelector("#id").value
-	 		var xhr = new XMLHttpRequest()
-	 		xhr.open("get","z03_data.jsp",false)
-	 		xhr.send()
-	 		var arry = xhr.responseText.split(",")
-	 		var hasId = false;
-	 		arry.forEach(function(id){
-	 		if(idVal == id){
-	 			hasId = true;
-	 		}
- 		})
-	 	if(hasId){
-	 		alert("등록된 id 있음")
-	 	}else{
-	 		alert("등록 가능함") 			
-	 	}
- 	}
- 		
-</script>
-
-
 <body>
+	<%--
+	
+	id:[   ] [등록여부확인]
+	 --%>
+	<script>
+		// form 하위에 있는 input은 
+		// 기본적을 enter를 클릭 자동을 submit을 처리가 된다.
+		// 이것을 방지하기 위해서 
+		// event.preventDefault();
+		// 기본적인 이벤트를 방지 처리하여야 한다.
+		document.addEventListener('keydown',
+		  function(event) {
+			  if (event.keyCode === 13) {
+			     event.preventDefault();
+			  };
+		  }, 
+		  true);
+		function ckIdKey(){
+			
+			if(event.keyCode==13){
+				
+				ckId()
+			}
+		}
+		// 15:10~
+		function ckId(){
+			var idVal = document.querySelector("#id").value
+			console.log(idVal)
+			var xhr = new XMLHttpRequest();
+			xhr.open("get","z03_data.jsp",false);
+			xhr.send()
+			var arry = xhr.responseText.split(",")
+			var hasId = false;
+			console.log(arry)
+			arry.forEach(function(id){
+				console.log(id)
+				if(idVal == id){
+					hasId = true;
+				}
+			})
+			if(hasId){
+				alert("등록된 id 있음")
+			}else{
+				alert("등록 가능")
+			}
+		}
+	</script>
     <div class="container mt-3">
     	<h2>사원정보 등록</h2>
     	<form action="" method="post">
@@ -85,7 +92,7 @@
 			        <td>john@example.com</td>
 			   	</tr>
 		 	</tbody>
-		</table>     	
+		</table>      	
     </div>
 </body>
 </html>

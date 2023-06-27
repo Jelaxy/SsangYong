@@ -1,5 +1,6 @@
 package backweb.a01_database;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -96,7 +97,8 @@ public class A04_PreparedDao {
         }
         return jobList;
     }
-
+    // Map<String, Sting> map = newHashMap<String, String>
+    // map.put("title",""); min_sal1, min_sal2
     public List<Job> getJob(Map<String, String> sch) {
         List<Job> jobList = new ArrayList<>();
         String sql = "SELECT * FROM jobs "
@@ -104,7 +106,7 @@ public class A04_PreparedDao {
         // where upper(컬럼) : 대상데이터를 대문자 변경
         // like LIKE UPPER(?) : 입력데이터로 대문자 변경
         // 대소문자 상관없이 검색이 가능하도록 처리.
-        try {
+        try { 
             con = DB.con();
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, "%" + sch.get("title") + "%");
@@ -224,10 +226,10 @@ public class A04_PreparedDao {
             con = DB.con();
             con.setAutoCommit(false);
             pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, upt.getStreet_address());
+            pstmt.setString(1, upt.getStreet_adress());
             pstmt.setString(2, upt.getPostal_code());
             pstmt.setString(3, upt.getCity());
-            pstmt.setString(4, upt.getState_province());
+            pstmt.setString(4, upt.getState_Province());
             pstmt.setString(5, upt.getCountry_id());
             pstmt.setInt(6, upt.getLocation_id());
             isUpdate = pstmt.executeUpdate();

@@ -12,41 +12,44 @@
 <%--
 # 서버의 json 데이터 가져오기
 1. 일반적으로 json 형식의 서버에서 가져오는 경우가 많다.
-2. json 형식
+2. json형식
 	{"key",value}
-	key는 "" 사이에 value는 문자열일 때는 ""사이에, 숫자는 바로
+	key는 ""사이에
+	value는 문자열일 때는 ""사이에, 숫자는 바로 
 3. 처리 형식
-	1) 메인 페이지 : XMLHttpRequest 객체로 코드 처리
-	2) 데이터 처리 페에지 : {"key",value 형식 선언}
+	1) 메인 페이지 : XMLHttpRequest객체로 코드 처리
+	2) 데이터 처리페이지 : {"Key", value 형식 선언}
 	3) 이벤트에 의해 호출
-		- json 형식으로 변경(문자열 ==> Object)
-		 	- eval("("+xhr.respinseText+")")
-			- Json.parse(xhr.responseText)
-		- 객체로 특정 DOM에 할당한다.
+		- json형식으로 변경(문자열 ==> Object)
+			- eval("("+xhr.responseText+")")
+			- JSON.parse(xhr.reponseText)
+		- 객체로 특정 DOM에 할당한다.	
  --%>
- <script type="text/javascript">
- 	function call(){
- 		var xhr = new XMLHttpRequest();
- 		xhr.open("get","z04_jsonData.jsp",false);
- 		xhr.send();
- 		var data = xhr.responseText;
- 		console.log(typeof data)
- 		var obj = JSON.parse(data) //문자열을 json 객체로 변환
- 		console.log(typeof obj)
- 		var tds = document.querySelectorAll("tbody td")
- 		tds[0].innerText = obj.name
- 		tds[1].innerText = obj.price
- 		tds[2].innerText = obj.cnt
- 	}
- 	// z05_json2.jsp 회원정보 json 데이터 선언
- 	// a05_memberInfo.jsp 회원정보 가져오기 클릭시, 테이블에 선언된 회원정보 가져와서 출력하기
- 	
- </script>
+<script type="text/javascript">
+	function call(){
+		var xhr = new XMLHttpRequest();
+		xhr.open("get","z04_jsonData.jsp", false);
+		xhr.send();
+		var data = xhr.responseText;
+		console.log(typeof data)
+		var obj = JSON.parse(data) // 문자열을 json 객체로 변환
+		console.log(typeof obj)
+		var tds = document.querySelectorAll("tbody td")
+		tds[0].innerText = obj.name
+		tds[1].innerText = obj.price
+		tds[2].innerText = obj.cnt
+	}
+	// z05_json2.jsp 회원정보 json 데이터 선언.
+	// a05_memberInfo.jsp  회원정보가져오기 클릭시,
+	// 	   테이블에 선언된 회원정보 가져와서 출력하기..
+	
+</script> 
 <body>
     <div class="container mt-3">
-    	<h2>사원정보 등록</h2>
+    	<h2>json 데이터 호출 등록</h2>
     	<form action="" method="post">
-         	<button onclick="call()" type="button" class="btn btn-primary">json 데이터 호출</button>
+         	<button onclick="call()" type="button" class="btn btn-primary">
+         		json데이터 호출</button>
      	</form>
 		<table class="table table-striped table-hover">
 			<thead class="table-success">
@@ -58,9 +61,9 @@
 		    </thead>
 		    <tbody>
 			   	<tr  class="text-center">
-			        <td></td>
-			        <td></td>
-			        <td></td>
+			        <td>John</td>
+			        <td>Doe</td>
+			        <td>john@example.com</td>
 			   	</tr>
 		 	</tbody>
 		</table>      	

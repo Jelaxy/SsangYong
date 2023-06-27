@@ -1,5 +1,7 @@
 package backweb.z01_vo;
 
+// backweb.z01_vo.Job
+
 public class Job {
 	private String jobID;
 	private String jobTitle;
