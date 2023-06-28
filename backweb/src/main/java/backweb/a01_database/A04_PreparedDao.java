@@ -1,6 +1,7 @@
 package backweb.a01_database;
 
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import backweb.z01_vo.Code;
 import backweb.z01_vo.Department;
 import backweb.z01_vo.Emp;
 import backweb.z01_vo.Employee;
@@ -430,6 +432,68 @@ public class A04_PreparedDao {
 	        DB.close(rs, pstmt, con);
 	    }
 	    return elist;
+	}
+
+	public List<Code> getCodeList(String title) {
+	    List<Code> clist = new ArrayList<>();
+	    String sql = "SELECT no, title, val, refno, ordno\r\n"
+	    		+ "FROM CODE\r\n"
+	    		+ "WHERE title LIKE ?\r\n"
+	    		+ "ORDER by refno, ordno";
+	    
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, '%'+title+"%");
+	        rs = pstmt.executeQuery();
+	        
+	        while (rs.next()) {
+	        	clist.add(new Code(
+	                    rs.getInt("no"),
+	                    rs.getString("title"),
+	                    rs.getString("val"),
+	                    rs.getInt("refno"),
+	                    rs.getInt("ordno")
+	            ));
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return clist;
+	}
+
+	// combo를하면 계속 등록하더라도 리스트내용을 정렬 방식까지
+	public List<Code> getCombo(int refno) {
+	    List<Code> clist = new ArrayList<>();
+	    String sql = "SELECT no, title, val, refno, ordno\r\n"
+	    		+ "FROM CODE\r\n"
+	    		+ "WHERE refno LIKE ?\r\n"
+	    		+ "ORDER by ordno";
+	    
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, refno);
+	        rs = pstmt.executeQuery();
+	        
+	        while (rs.next()) {
+	        	clist.add(new Code(
+	                    rs.getString("title"),
+	                    rs.getString("val")
+	            ));
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return clist;
 	}
 
 	public static void main(String[] args) {

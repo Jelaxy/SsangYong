@@ -1,7 +1,7 @@
 package backweb.z01_vo;
 
 import java.util.Date;
-//backweb.z01_vo.Member
+// backweb.z01_vo.Member
 public class Member {
 	private String id;
 	private String pass;
