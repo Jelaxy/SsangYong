@@ -12,6 +12,7 @@ import java.util.Map;
 
 import backweb.z01_vo.Code;
 import backweb.z01_vo.Department;
+import backweb.z01_vo.Dept;
 import backweb.z01_vo.Emp;
 import backweb.z01_vo.Employee;
 import backweb.z01_vo.Job;
@@ -400,28 +401,23 @@ public class A04_PreparedDao {
 	    return elist;
 	}
 
-	public List<Emp> getEmpList(String ename, String job) {
-	    List<Emp> elist = new ArrayList<>();
+	public List<Dept> getDeptList(String dname, String loc) {
+	    List<Dept> dlist = new ArrayList<>();
 	    String sql = "SELECT * FROM emp02 where ename like ? and job like ? order by empno ";
 	    
 	    try {
 	        con = DB.con();
 	        pstmt = con.prepareStatement(sql);
-	        pstmt.setString(1, '%'+ename+"%");
-	        pstmt.setString(2, '%'+job+"%");
+	        pstmt.setString(1, '%'+dname+"%");
+	        pstmt.setString(2, '%'+loc+"%");
 	        rs = pstmt.executeQuery();
 	        
 	
 	        while (rs.next()) {
-	            elist.add(new Emp(
-	                    rs.getInt("empno"),
-	                    rs.getString("ename"),
-	                    rs.getString("job"),
-	                    rs.getInt("mgr"),
-	                    rs.getDate("hiredate"),
-	                    rs.getDouble("sal"),
-	                    rs.getDouble("comm"),
-	                    rs.getInt("deptno")
+	            dlist.add(new Dept(
+	                    rs.getInt("deptno"),
+	                    rs.getString("dname"),
+	                    rs.getString("loc")
 	            ));
 	        }
 	    } catch (SQLException e) {
@@ -431,7 +427,7 @@ public class A04_PreparedDao {
 	    } finally {
 	        DB.close(rs, pstmt, con);
 	    }
-	    return elist;
+	    return dlist;
 	}
 
 	public List<Code> getCodeList(String title) {
@@ -469,7 +465,7 @@ public class A04_PreparedDao {
 	// combo를하면 계속 등록하더라도 리스트내용을 정렬 방식까지
 	public List<Code> getCombo(int refno) {
 	    List<Code> clist = new ArrayList<>();
-	    String sql = "SELECT no, title, val, refno, ordno\r\n"
+	    String sql = "SELECT title, val\r\n"
 	    		+ "FROM CODE\r\n"
 	    		+ "WHERE refno LIKE ?\r\n"
 	    		+ "ORDER by ordno";
@@ -494,6 +490,67 @@ public class A04_PreparedDao {
 	        DB.close(rs, pstmt, con);
 	    }
 	    return clist;
+	}
+
+	public void insertCode(Code ins) {
+	    int isInsert = 0;
+	    String sql = "INSERT INTO code values"
+	    		+ "(code_seq.nextval, ?,?,?,?)";
+	    try {
+	        con = DB.con();
+	        con.setAutoCommit(false);
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, ins.getTitle());
+	        pstmt.setInt(2, ins.getRefno());
+	        pstmt.setInt(3, ins.getOrdno());
+	        pstmt.setString(4, ins.getVal());
+	        isInsert = pstmt.executeUpdate();
+	        if (isInsert == 1) {
+	            con.commit();
+	            System.out.println("등록 성공");
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 오류: " + e.getMessage());
+	        DB.rollback(con);
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	}
+
+	public List<Emp> getEmpList(String ename, String job) {
+	    List<Emp> elist = new ArrayList<>();
+	    String sql = "SELECT * FROM emp02 where ename like ? and job like ? order by empno ";
+	    
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, '%'+ename+"%");
+	        pstmt.setString(2, '%'+job+"%");
+	        rs = pstmt.executeQuery();
+	        
+	
+	        while (rs.next()) {
+	            elist.add(new Emp(
+	                    rs.getInt("empno"),
+	                    rs.getString("ename"),
+	                    rs.getString("job"),
+	                    rs.getInt("mgr"),
+	                    rs.getDate("hiredate"),
+	                    rs.getDouble("sal"),
+	                    rs.getDouble("comm"),
+	                    rs.getInt("deptno")
+	            ));
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return elist;
 	}
 
 	public static void main(String[] args) {

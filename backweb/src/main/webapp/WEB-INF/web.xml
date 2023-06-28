@@ -19,8 +19,6 @@
     <servlet-name>A01_Servlet</servlet-name>
     <url-pattern>/A01_Servlet</url-pattern>
   </servlet-mapping>
-  <!--프로젝트명/servlet02 : urlpattern
-  형식지정-->
   <servlet>
     <description></description>
     <display-name>servlet01</display-name>
@@ -70,5 +68,25 @@
   <servlet-mapping>
     <servlet-name>A04_Servlet_html</servlet-name>
     <url-pattern>/A04_Servlet_html</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Codeins</display-name>
+    <servlet-name>Codeins</servlet-name>
+    <servlet-class>backweb.a02_servlet.A06_Codeinsert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Codeins</servlet-name>
+    <url-pattern>/Codeins</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CodeIns.do</display-name>
+    <servlet-name>CodeIns.do</servlet-name>
+    <servlet-class>backweb.a02_servlet.A06_CodeInsert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CodeIns.do</servlet-name>
+    <url-pattern>/CodeIns.do</url-pattern>
   </servlet-mapping>
 </web-app>

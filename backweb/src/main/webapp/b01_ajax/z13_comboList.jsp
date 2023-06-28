@@ -12,3 +12,10 @@ A04_PreparedDao dao = new A04_PreparedDao();
 Gson g = new Gson();
 %>
 <%=g.toJson(dao.getCodeList(title))%>
+<%
+String dname = request.getParameter("dname");
+String loc = request.getParameter("loc");
+A04_PreparedDao dao2 = new A04_PreparedDao();
+Gson gson = new Gson();
+%>
+<%=gson.toJson(dao2.getCodeList(dname))%>

@@ -26,7 +26,6 @@
 	요청값 : title
 	import 처리 (dao,Gson,Combo)
 	Gson으로 처리 json 데이터 로딩
--------------------------------------------------
 2. frontend(a13_ComboAjax.jsp)
 	1) 화면구성
 	2) 이벤트 처리
@@ -34,12 +33,13 @@
 		- 검색 DOM
 		- ajax 처리
 		- 화면 리스트 처리
+		
 # 코드 등록 처리 ajax
 1. back단(servlet 이용)
 	1) Dao(등록 처리 -메서드 추가)
 		sql (insert문)
-			INSERT INTO code values(code_seq.nextval, '과일','val',?,?);
-			INSERT INTO code values(code_seq.nextval, ?,?,?,?);
+			INSERT INTO code values(code_seq.nextval, '과일','val',?,?)
+			INSERT INTO code values(code_seq.nextval, ?,?,?,?)
 		dao insert 메서드 추가
 	2) 요청값 받기
 	3) 등록 결과 리턴 문자열
@@ -62,7 +62,7 @@
  		if(event.keyCode==13){
  			schCode();
  		}
- 	}r
+ 	}
  	
  	function schCode(){
 		var titleOb = document.querySelector("#title")
@@ -157,10 +157,100 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>
+        <button type="button" onclick="ajaxSave()" class="btn btn-success" data-bs-dismiss="modal">Save</button>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </div>
+<script type="text/javascript">
+	function ajaxSave(){
+		// 입력 val
+		var title = document.querySelector(".modal-body #title").value
+		var val = document.querySelector(".modal-body #val").value
+		var refno = document.querySelector(".modal-body #refno").value
+		var ordno = document.querySelector(".modal-body #ordno").value
+		var qStr = "title="+title+"&refno="+refno
+				+"&ordno="+ordno+"&val="+val
+		alert(qStr)		
+		// ajax 처리
+		var xhr = new XMLHttpRequest()
+		xhr.open("post","/backweb/CodeIns.do",true)
+		xhr.setRequestHeader("Content-Type",
+				"application/x-www-form-urlencoded")
+		xhr.send(qStr)
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4&xhr.status==200){
+				var result = xhr.responseText
+				if(result=="Y"){
+					alert("등록성공")	
+				}else{
+					alert("등록실패")	
+				}
+			}
+		}
+	}
+	
+	<%--[1단계:코드] 2. 부서정보를 ajax로 (부서명,부서위치)키워드 검색하여 리스트 처리하세요.--%>
+	<script type="text/javascript">
+ 	function dpCode13(){
+ 		if(event.keyCode==13){
+ 			schCode();
+ 		}
+ 	}
+ 	
+ 	function dpCode(){
+		var dnameOb = document.querySelector("#dname")
+		var locOb = document.querySelector("#loc")
+ 		var xhr = new XMLHttpRequest()
+		xhr.open("post","z13_comboList.jsp",true)
+		xhr.setRequestHeader("Content-Type",
+				"application/x-www-form-urlencoded")
+		xhr.send("title="+titleOb.value)
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4&xhr.status==200){
+				var codeList = JSON.parse(xhr.responseText)
+				var show = ""
+				codeList.forEach(function(code){
+					show+="<tr class='text-center'>"
+					show+="<td>"+code.no+"</td>"
+					show+="<td>"+code.title+"</td>"
+					show+="<td>"+code.refno+"</td>"
+					show+="<td>"+code.ordno+"</td>"
+					show+="</tr>"
+				})
+				var tbody = document.querySelector("tbody")
+				tbody.innerHTML = show;
+			}
+		}
+ 	}
 
+	
+</script>
+    <div class="container mt-3">
+    	<h2>사원정보 등록</h2>
+    	<form action="" method="post">
+         	<div class="mb-3 mt-3">
+            <label for="title">타이틀:</label>
+            <input onkeyup="schCode13()" type="text" class="form-control" 
+      	     id="title" placeholder="타이틀 입력" name="title">
+         	</div>
+         	
+			<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
+			  코드 등록
+			</button>
+         	<button onclick="schCode()"type="button" class="btn btn-primary">조회</button>
+     	</form>
+		<table class="table table-striped table-hover">
+			<thead class="table-success">
+		      	<tr  class="text-center">
+				    <th>번호</th>
+				    <th>제목</th>
+				    <th>상위번호</th>
+				    <th>정렬</th>
+		      	</tr>
+		    </thead>
+		    <tbody>
+		 	</tbody>
+		</table>      	
+    </div>
     </div>
   </div>
 </div>
