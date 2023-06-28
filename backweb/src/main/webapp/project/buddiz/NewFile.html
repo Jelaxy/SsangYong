@@ -7,14 +7,13 @@
     <title>Bootstrap 4, from LayoutIt!</title>
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
-    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="./scss/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet" >
-    <link href="header.css" rel="stylesheet">
-    <link href="../reset.css" rel="stylesheet">
+	<link href="./scss/style.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
   </head>
 <body>
-
-<header>
+<!--<header>
         <a href="./index.html">
             <img class="headLogo" src="./source/logo_o-bg.png">
         </a>
@@ -57,6 +56,8 @@
             </a>
         </div>
     </header>
+	-->
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -92,16 +93,43 @@
 					</div>
 				</div>
 			</div>
-			
+			<!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+	개인정보 수정
+  </button>
+  
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+  
+		<!-- Modal Header -->
+		<div class="modal-header">
+		  <h4 class="modal-title">내 정보 수정하기</h4>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+		</div>
+  
+		<!-- Modal body -->
+		<div class="modal-body">
+		  Modal body..
+		</div>
+  
+		<!-- Modal footer -->
+		<div class="modal-footer">
+			<button type="button" class="btn btn-success" data-bs-dismiss="modal">저장</button>
+			<button type="button" class="btn btn-danger" data-bs-dismiss="modal">나가기</button>
+		</div>
+  
+	  </div>
+	</div>
+  </div>
 			<h2>
 				율림
 			</h2>
 			<p>
-				낮에는 코드짜고 밤에는 니트짜는 율림 등장
+				낮에는 코드짜고 밤에는 니트짜는 사람
 			</p>
-			<p>
-				<a class="btn" href="#">더보기 »</a>
-			</p>
+
 		</div>
 	</div>
 	<div class="row">
