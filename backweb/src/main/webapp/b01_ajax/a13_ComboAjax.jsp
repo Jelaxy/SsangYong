@@ -55,204 +55,253 @@
 		[등록]
 	3) 이벤트 핸들러
 		ajax로 등록 controller 호출 처리
-	
+		
+# 등록 후 처리 프로세ㅔ스
+1. 등록완료
+	- 등록 성공
+	- 화면에 있는 데이터를 재조회 처리
+	- 입력데이터 초기화
+	- 계속 여부 확인
+		- 계속시 등록 처리할 수 있게하고
+		- 취소시 창이 닫게 처리
+# 상세화면 로딩 및 수정/삭제
+1. 화면 처리
+	1) 클릭 row 단위로 클릭
+	2) 모달창(수정/삭제) 추가
+	3) 화면 로딩(모달창)
+		- input hidden으로 process 처리
+			단일데이터가져오기/등록/수정/삭제 ==> 같은 servlet에서 처리
+		- 단일데이터 ajax로 가져오기
+	4) 수정 클릭시, 수정할 요청값을 query string 만들기
+	5) 수정 프로세스 ajax로 처리
+		주의 기존 등록 process와 구분할 수 있도록
+	6) 수정 후 처리 내용
+		- 수정 성공/계속 수정하시겠습니까?
+	7) 단일 데이터 ajax로 가져와서 로딩 처리
+		
+2. backend처리
+	1) sql 처리
+		- 단일 데이터 조회 select * from code where no = ?
+		- 수정 처리
+			update	code
+				set title = ?
+				val = ?,
+				refno = ?,
+				ordno = ?,
+			where no = ?
+		- 삭제 처리
+			delete from code
+				where no = ?
+	2) dao 메서드 추가
+		public Code getCode(int no);
+		public void insertCode(Code upt);
+		public void deleteCode(int no);
+	3) Servlet(MVC 패턴의 Controller 연습)
+		String proc = request.getParameter("proc");
+		// 단일데이터 로딩, 수정, 삭제
+		// Dao 생성
+		// 조건에 따라서 메서드 처리
+		// 결과값 처리 Gson 활용
 --%>
 <script type="text/javascript">
- 	function schCode13(){
- 		if(event.keyCode==13){
- 			schCode();
- 		}
- 	}
- 	
- 	function schCode(){
-		var titleOb = document.querySelector("#title")
- 		var xhr = new XMLHttpRequest()
-		xhr.open("post","z13_comboList.jsp",true)
-		xhr.setRequestHeader("Content-Type",
-				"application/x-www-form-urlencoded")
-		xhr.send("title="+titleOb.value)
-		xhr.onreadystatechange=function(){
-			if(xhr.readyState==4&xhr.status==200){
-				var codeList = JSON.parse(xhr.responseText)
-				var show = ""
-				codeList.forEach(function(code){
-					show+="<tr class='text-center'>"
-					show+="<td>"+code.no+"</td>"
-					show+="<td>"+code.title+"</td>"
-					show+="<td>"+code.refno+"</td>"
-					show+="<td>"+code.ordno+"</td>"
-					show+="</tr>"
-				})
-				var tbody = document.querySelector("tbody")
-				tbody.innerHTML = show;
-			}
-		}
- 	}
-</script>
-<body>
-    <div class="container mt-3">
-    	<h2>사원정보 등록</h2>
-    	<form action="" method="post">
-         	<div class="mb-3 mt-3">
-            <label for="title">타이틀:</label>
-            <input onkeyup="schCode13()" type="text" class="form-control" 
-      	     id="title" placeholder="타이틀 입력" name="title">
-         	</div>
-         	
-			<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
-			  코드 등록
-			</button>
-         	<button onclick="schCode()"type="button" class="btn btn-primary">조회</button>
-     	</form>
-		<table class="table table-striped table-hover">
-			<thead class="table-success">
-		      	<tr  class="text-center">
-				    <th>번호</th>
-				    <th>제목</th>
-				    <th>상위번호</th>
-				    <th>정렬</th>
-		      	</tr>
-		    </thead>
-		    <tbody>
-		 	</tbody>
-		</table>      	
-    </div>
-
-<!-- The Modal -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">코드 등록</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <!--  제목, 값, 상위번호, 정렬
-			title, val, refno, ordno -->
-      <div class="modal-body">
-            <div class="mb-3 mt-3">
-	            <label for="title">제목:</label>
-	            <input onkeyup="schCode13()" type="text" class="form-control" 
-	      	     id="title" placeholder="제목 입력" name="title">
-         	</div>
-			<div class="mb-3 mt-3">
-	            <label for="val">값:</label>
-	            <input onkeyup="schCode13()" type="text" class="form-control" 
-	      	     id="val" placeholder="값 입력" name="val">
-         	</div>
-         	<div class="mb-3 mt-3">
-	            <label for="refno">상위번호:</label>
-	            <input onkeyup="schCode13()" type="number" class="form-control" 
-	      	     id="refno" placeholder="상위번호 입력" name="refno">
-         	</div>
-         	<div class="mb-3 mt-3">
-	            <label for="ordno">정렬:</label>
-	            <input onkeyup="schCode13()" type="number" class="form-control" 
-	      	     id="ordno" placeholder="정렬 입력" name="ordno">
-         	</div>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" onclick="ajaxSave()" class="btn btn-success" data-bs-dismiss="modal">Save</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-<script type="text/javascript">
-	function ajaxSave(){
-		// 입력 val
-		var title = document.querySelector(".modal-body #title").value
-		var val = document.querySelector(".modal-body #val").value
-		var refno = document.querySelector(".modal-body #refno").value
-		var ordno = document.querySelector(".modal-body #ordno").value
-		var qStr = "title="+title+"&refno="+refno
-				+"&ordno="+ordno+"&val="+val
-		alert(qStr)		
-		// ajax 처리
-		var xhr = new XMLHttpRequest()
-		xhr.open("post","/backweb/CodeIns.do",true)
-		xhr.setRequestHeader("Content-Type",
-				"application/x-www-form-urlencoded")
-		xhr.send(qStr)
-		xhr.onreadystatechange=function(){
-			if(xhr.readyState==4&xhr.status==200){
-				var result = xhr.responseText
-				if(result=="Y"){
-					alert("등록성공")	
-				}else{
-					alert("등록실패")	
-				}
-			}
+	function schCode13(){
+		if(event.keyCode==13){
+			schCode();
 		}
 	}
-	
-	<%--[1단계:코드] 2. 부서정보를 ajax로 (부서명,부서위치)키워드 검색하여 리스트 처리하세요.--%>
-	<script type="text/javascript">
- 	function dpCode13(){
- 		if(event.keyCode==13){
- 			schCode();
- 		}
- 	}
- 	
- 	function dpCode(){
-		var dnameOb = document.querySelector("#dname")
-		var locOb = document.querySelector("#loc")
- 		var xhr = new XMLHttpRequest()
+	function schCode(){
+		var titleOb = document.querySelector("#title")
+		var refnoOb = document.querySelector("#refno")
+		var xhr = new XMLHttpRequest()
 		xhr.open("post","z13_comboList.jsp",true)
 		xhr.setRequestHeader("Content-Type",
 				"application/x-www-form-urlencoded")
-		xhr.send("title="+titleOb.value)
+		xhr.send("title="+titleOb.value+"&refno="+refnoOb.value)
 		xhr.onreadystatechange=function(){
-			if(xhr.readyState==4&xhr.status==200){
+			if(xhr.readyState==4&&xhr.status==200){
 				var codeList = JSON.parse(xhr.responseText)
-				var show = ""
+				var show=""
 				codeList.forEach(function(code){
-					show+="<tr class='text-center'>"
+					show+="<tr ondblclick='detail("+code.no+")' class='text-center "+(code.refno==0?'table-info':'')+"'>"
 					show+="<td>"+code.no+"</td>"
 					show+="<td>"+code.title+"</td>"
+					show+="<td>"+(code.val==undefined?'':code.val)+"</td>"
 					show+="<td>"+code.refno+"</td>"
 					show+="<td>"+code.ordno+"</td>"
 					show+="</tr>"
 				})
-				var tbody = document.querySelector("tbody")
-				tbody.innerHTML = show;
+				var tBody = document.querySelector("tbody")
+				tBody.innerHTML = show;
 			}
 		}
- 	}
-
+		
+	}
+	function detail(no){
+		document.querySelector("#detailModal").click()
+		document.querySelector(".modal-title").innerText
+			="코드상세화면[코드번호:"+no+"]"
+		// ajax로 상세 데이터를 가져와서 화면에 데이터 넣기
+	}
 	
+	function insMoadl(){
+		document.querySelector(".modal-title").innerText
+		="코드등록"
+	}
 </script>
-    <div class="container mt-3">
-    	<h2>사원정보 등록</h2>
-    	<form action="" method="post">
-         	<div class="mb-3 mt-3">
-            <label for="title">타이틀:</label>
-            <input onkeyup="schCode13()" type="text" class="form-control" 
-      	     id="title" placeholder="타이틀 입력" name="title">
-         	</div>
-         	
-			<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
-			  코드 등록
-			</button>
-         	<button onclick="schCode()"type="button" class="btn btn-primary">조회</button>
-     	</form>
+<body>
+	<div class="container mt-3">
+		<h2>Combox list</h2>
+		<div class="mb-3 mt-3">
+			<label for="title">제목:</label> <input type="text"
+				class="form-control" id="title" onkeyup="schCode13()"
+				placeholder="타이틀 입력" name="title">
+			<label for="">상위코드:</label> 
+				<input type="text" value="0"
+				class="form-control" id="refno" onkeyup="schCode13()"
+				placeholder="상위코드 입력" name="refno">
+		</div>
+		
+		<div id="detailModal"data-bs-toggle="modal"
+			data-bs-target="#myModal"></div>
+		<button type="button" onclick="insModal()" id="insertModal" class="btn btn-success" data-bs-toggle="modal"
+			data-bs-target="#myModal">코드등록</button>
+
+		<button onclick="schCode()" type="button" class="btn btn-primary">조회</button>
 		<table class="table table-striped table-hover">
 			<thead class="table-success">
-		      	<tr  class="text-center">
-				    <th>번호</th>
-				    <th>제목</th>
-				    <th>상위번호</th>
-				    <th>정렬</th>
-		      	</tr>
-		    </thead>
-		    <tbody>
-		 	</tbody>
-		</table>      	
-    </div>
-    </div>
-  </div>
-</div>
+				<tr class="text-center">
+					<th>번호</th>
+					<th>제목</th>
+					<th>값</th>
+					<th>상위번호</th>
+					<th>정렬</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="text-center">
+					<td>John</td>
+					<td>Doe</td>
+					<td>john@example.com</td>
+					<td>john@example.com</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- The Modal -->
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">코드 등록</h4>
+					<button type="button" id="modalClsBtn" class="btn-close" data-bs-dismiss="modal"></button>
+					
+				</div>
+
+				<!-- Modal body 
+				-->
+				<form id="regFrm">
+				<div class="modal-body">
+					<div class="mb-3 mt-3">
+						<label for="title">제목:</label> 
+						<input type="text"
+							class="form-control" id="title"
+						placeholder="타이틀 입력" name="title">
+					</div>
+					<div class="mb-3 mt-3">
+						<label for="val">값:</label> 
+						<input type="text"
+							class="form-control" id="val"
+						placeholder="값 입력" name="val">
+					</div>
+					<div class="mb-3 mt-3">
+						<label for="number">상위번호:</label> 
+						<input type="text"
+							class="form-control" id="refno"
+						placeholder="상위번호 입력" name="refno">
+					</div>
+					<div class="mb-3 mt-3">
+						<label for="ordno">정렬순서:</label> 
+						<input type="number"
+							class="form-control" id="ordno"
+						placeholder="정렬순서 입력" name="ordno">
+					</div>										
+				</div>
+				</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success"
+						onclick="ajaxSave()">등록</button>
+					<button type="button" class="btn btn-primary"
+						onclick="ajaxUpdate()">수정</button>
+					<button type="button" class="btn btn-warning"
+						onclick="ajaxDelete()">삭제</button>
+					<button type="button" class="btn btn-danger"
+						data-bs-dismiss="modal">Close</button>
+						
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function ajaxSave(){
+			// 입력 val
+			var title=document.querySelector(".modal-body #title").value
+			var val=document.querySelector(".modal-body #val").value
+			var refno=document.querySelector(".modal-body #refno").value
+			var ordno=document.querySelector(".modal-body #ordno").value
+			var qStr = "title="+title+"&refno="+refno
+					+"&ordno="+ordno+"&val="+val
+			//alert(qStr)		
+			// ajax 처리..
+			var xhr = new XMLHttpRequest()
+			xhr.open("post","/backendWeb/codeIns.do",true)
+			xhr.setRequestHeader("Content-Type",
+					"application/x-www-form-urlencoded")
+			xhr.send(qStr)
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4&&xhr.status==200){
+					var result = xhr.responseText
+					if(result=="Y"){
+						alert("등록성공")
+						schCode()
+						document.querySelector("#regFrm").reset()
+						if(!confirm("계속등록하시겠습니까?")){
+							// 창닫기 처리
+							document.querySelector("#modalClsBtn").click()
+						}
+					}else{
+						alert("등록실패")
+					}
+				}
+			}
+			
+			
+		}
+		// 초기에 수행 처리..(화면에 검색된 상태에서 처리)
+		schCode();
+		/*
+		1. 등록완료
+			- 등록 성공
+			- 화면에 있는 데이터를 재조회 처리
+			- 입력데이터 초기화 
+			- 계속 여부 확인
+				- 계속시 등록 처리할 수 있게 하고
+				- 취소시 창이 닫게 처리.
+		2. 리스트데이터
+			화면구현
+				- 제목:[   ]
+			    - 상위코드:[  ]
+			js로 요청값 처리	
+			계층형 sql로 계층별로 리스트되게 처리.
+			sql 처리
+			dao 변경
+			요청값 상위코드 전달.(Servlet에서)
+			
+		
+		*/
+
+	</script>
 </body>
 </html>
