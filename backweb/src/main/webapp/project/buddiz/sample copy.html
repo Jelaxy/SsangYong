@@ -73,33 +73,65 @@
 			</p>
 		  </div>
 		  
-		  <!-- The Modal -->
-		  <div class="modal fade" id="myModal">
-			<div class="modal-dialog">
-			  <div class="modal-content">
-		  
+	<!-- The Modal -->
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
 				<!-- Modal Header -->
 				<div class="modal-header">
-				  <h4 class="modal-title">Modal Heading</h4>
-				  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					<h4 class="modal-title">코드 등록</h4>
+					<button type="button" id="modalClsBtn" class="btn-close" data-bs-dismiss="modal"></button>
+					
 				</div>
-		  
+
 				<!-- Modal body -->
+				<form id="regFrm">
 				<div class="modal-body">
-				  Modal body..
+					<div class="mb-3 mt-3">
+						<label for="title">제목:</label> 
+						<input type="text"
+							class="form-control" id="title"
+						placeholder="타이틀 입력" name="title">
+					</div>
+					<div class="mb-3 mt-3">
+						<label for="val">값:</label> 
+						<input type="text"
+							class="form-control" id="val"
+						placeholder="값 입력" name="val">
+					</div>
+					<div class="mb-3 mt-3">
+						<label for="number">상위번호:</label> 
+						<input type="text"
+							class="form-control" id="refno"
+						placeholder="상위번호 입력" name="refno">
+					</div>
+					<div class="mb-3 mt-3">
+						<label for="ordno">정렬순서:</label> 
+						<input type="number"
+							class="form-control" id="ordno"
+						placeholder="정렬순서 입력" name="ordno">
+					</div>										
 				</div>
-		  
-				<!-- Modal footer -->
+				</form>
 				<div class="modal-footer">
-				  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-success"
+						onclick="ajaxSave()">등록</button>
+					<button type="button" class="btn btn-primary"
+						onclick="ajaxUpdate()">수정</button>
+					<button type="button" class="btn btn-warning"
+						onclick="ajaxDelete()">삭제</button>
+					<button type="button" class="btn btn-danger"
+						data-bs-dismiss="modal">Close</button>
+						
 				</div>
-		  
-			  </div>
+
 			</div>
-		  </div>
+		</div>
+	</div>
 		  
 	</div>
-</div>
+
 </section>	
 	
 	

@@ -1,5 +1,6 @@
 package backendWeb.buddiz.vo;
-// backendWeb.z01_vo.buddiz.vo.BUser
+
+// backendWeb.buddiz.vo.BUser
 public class BUser {
    private String id;
    private String pass;
