@@ -124,7 +124,7 @@ public class JobPostingDao {
 //          try (ResultSet resultSet = pstmt.executeQuery()) {
 //             if (resultSet.next()) {
 //                return jobPostingRs(resultSet);
-//                jobPostings.add(jobPost);
+//                jobPostingRs.add(jobPost);
 //             }
 //          }
 //       }catch(SQLException e) {
@@ -181,16 +181,20 @@ public class JobPostingDao {
 public static void main(String[] args) {
    JobPostingDao dao = new JobPostingDao();
    dao.deleteJobPosting("2");
-//   dao.addJobPosting(new JobPosting("4","스미후루","010-2453-3342","홍대","개발","식품 개발","대학원 졸업","여자",3600,"2023-06-12","우편"));
-//   System.out.println("전체 공고 조회\n");
-//   for(JobPosting j: dao.getAllJobPostings()) {
-//      System.out.print(
-//    	j.toString()+"\n"
-//    	+"-----------------"
-//      );
-//   };
-   dao.updateJobPosting("3")
-//   dao.getJobPostingById("1");
+   
+   dao.addJobPosting(new JobPosting("4","스미후루","010-2453-3342","홍대","개발","식품 개발","대학원 졸업","여자",3600,"2023-06-12","우편"));
+  
+   System.out.println("전체 공고 조회\n");
+   for(JobPosting j: dao.getAllJobPostings()) {
+      System.out.print(
+    	j.toString()+"\n"
+    	+"-----------------"
+      );
+   };
+  
+   dao.updateJobPosting("3");
+   
+   dao.getJobPostingById("1");
    
    }
 }

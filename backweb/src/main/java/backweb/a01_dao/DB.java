@@ -1,4 +1,4 @@
-package backweb.a01_database;
+package backweb.a01_dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

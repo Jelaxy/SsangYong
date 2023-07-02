@@ -1,4 +1,4 @@
-package backweb.a01_database;
+package backweb.a01_dao;
 // backweb.a01_database.A05_MemberDao
 import java.sql.Connection;
 

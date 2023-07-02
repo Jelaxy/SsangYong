@@ -2,7 +2,7 @@ package backweb.a02_servlet;
 
 import java.io.IOException;
 
-import backweb.a01_database.A04_PreparedDao;
+import backweb.a01_dao.A04_PreparedDao;
 import backweb.z01_vo.Code;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
