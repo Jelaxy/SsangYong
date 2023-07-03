@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="backendWeb.a01_dao.A04_PreparedDao"
+    import="backendWeb.z01_vo.A04_PreparedDao"
     import="backendWeb.z01_vo.Job"
     import="java.util.*"
     %>
