@@ -1,4 +1,5 @@
 package backendWeb.buddiz.dao;
+// backendWeb.buddiz.dao.BuddyPost
 
 import java.sql.Connection;
 import java.sql.Date;
