@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  
+    import="backendWeb.buddiz.dao.BuddyPost"
 %>
     
 <!DOCTYPE html>
@@ -67,6 +68,7 @@
 <section class="jumbotron text-center">
 	<div class="container">
 		<div class="col-md-12">
+		<% %>
 			<img id="mePhoto" src="./source/흠냐륑.jpg"> 
 			<button type="button" id="openModalButton" class="btn btn-primary"
 				data-bs-toggle="modal" data-bs-target="#myModal">
@@ -141,6 +143,28 @@
 		</div>
 	</div>
 	</div>
+<section>
+<%
+BuddyPost post = new BuddyPost();
+//getFriendCount
+//getPostCount
+%>
+  <div class="container">
+    <div>
+      <h3>게시물</h3>
+      <h3><%= %></h3>
+    </div>
+  </div>
+</section>
+<section>
+
+  <div class="container">
+    <div>
+      <h3>친구수</h3>
+      <h3>25</h3>
+    </div>
+  </div>
+</section>
 	
 	
 </section>	

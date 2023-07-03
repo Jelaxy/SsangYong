@@ -145,7 +145,9 @@ WHERE TAG_ID = ? ;
 DELETE FROM post
 WHERE POST_ID = ? ;
 
-SELECT COUNT(*) FROM post;
+
+SELECT COUNT(*) FROM friend where id = 1;
+SELECT COUNT(*) FROM post where id = 1;
 SELECT COUNT(*) FROM friend; 
 --=========================join===================
 CREATE TABLE POST (
