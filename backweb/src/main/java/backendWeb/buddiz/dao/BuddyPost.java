@@ -1,4 +1,5 @@
 package backendWeb.buddiz.dao;
+// backendWeb.buddiz.dao.BuddyPost
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -17,9 +18,11 @@ public class BuddyPost {
     private PreparedStatement pstmt;
     private ResultSet rs;
     
+    
+    // 내 게시물 전체 수 조회
     public int getPostCount(){
         int postCnt =0;
-        String sql = "SELECT COUNT(*) FROM post";
+        String sql = "SELECT COUNT(*) FROM post where id = ?";
         
         try{
             con = DB.con();
@@ -39,10 +42,10 @@ public class BuddyPost {
     } 
     
 
-    
+    // 내 친구수 조회
     public int getFriendCount(){
         int buddyCnt =0;
-        String sql = "SELECT COUNT(*) FROM friend";
+        String sql = "SELECT COUNT(*) FROM friend where id = ?";
         
         try{
             con = DB.con();
