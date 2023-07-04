@@ -91,6 +91,8 @@ div {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+    display: flex;
+	justify-content: space-between;
 }
 div {
     display: block;

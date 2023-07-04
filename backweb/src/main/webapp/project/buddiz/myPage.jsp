@@ -1,15 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
     pageEncoding="UTF-8"
     import="java.util.List" 
     import="backendWeb.buddiz.vo.Post"
     import="backendWeb.buddiz.dao.MyPostList"
-=======
-    pageEncoding="UTF-8"  
     import="backendWeb.buddiz.dao.BuddyPost"
->>>>>>> refs/remotes/origin/master
 %>
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,10 +72,10 @@
 		<div class="col-md-12">
 		<% %>
 			<img id="mePhoto" src="./source/흠냐륑.jpg"> 
-			<button type="button" id="openModalButton" class="btn btn-primary"
-				data-bs-toggle="modal" data-bs-target="#myModal">
-				프로필 수정
-			</button>
+					<button type="button" onclick="checkPassword()"
+					id="openModalButton" class="btn btn-primary"
+					data-bs-toggle="modal"
+					data-bs-target="#myModal">프로필 수정</button>
 			<h3 class="lead text-muted">
 				율림
 			</h3>
@@ -95,10 +90,7 @@
 
 				<div class="modal-header">
 					<h4 class="modal-title">프로필 수정</h4>
-					<button type="button" onclick="checkPassword()"
-					id="openModalButton" class="btn btn-primary"
-					data-bs-toggle="modal"
-					data-bs-target="#myModal">프로필 수정</button>
+
 				</div>
 				<form id="regFrm">
 				<div class="modal-body">
@@ -113,12 +105,6 @@
 						<input type="text"
 							class="form-control" id="Name"
 						placeholder="이름 입력" name="Name">
-					</div>
-					<div class="mb-3 mt-3">
-						<label for="PASS"></label> 
-						<input type="text"
-							class="form-control" id="PASS"
-						placeholder="비밀번호 입력" name="PASS">
 					</div>
 					<div class="mb-3 mt-3">
 						<label for="B_DAY"></label> 
@@ -151,24 +137,22 @@
 	</div>
 	</div>
 <section>
-<%
-BuddyPost post = new BuddyPost();
-//getFriendCount
-//getPostCount
-%>
-  <div class="container">
+  <%
+  BuddyPost dao = new BuddyPost();
+  int postCnt = dao.getPostCount();
+  %>
+  <div class="container" style="float:left">
     <div>
       <h3>게시물</h3>
-      <h3><%= %></h3>
+      <h3><%=postCnt %></h3>
     </div>
   </div>
-</section>
-<section>
 
-  <div class="container">
+  <% int freCnt = dao.getFriendCount(); %>
+  <div class="container" style="float:right;">
     <div>
       <h3>친구수</h3>
-      <h3>25</h3>
+      <h3><%=freCnt %></h3>
     </div>
   </div>
 </section>
@@ -181,8 +165,8 @@ BuddyPost post = new BuddyPost();
       <div class="row">
       <div class="col-md-4">
   <%
-  MyPostList dao = new MyPostList();
-  List<Post> posts = dao.getMyPosts();
+  MyPostList dao2 = new MyPostList();
+  List<Post> posts = dao2.getMyPosts();
   %>
   <%
   for (Post post : posts) { %>
