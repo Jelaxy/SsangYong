@@ -133,6 +133,7 @@ DROP TABLE ROOM;
 DROP TABLE CHATTING;
 
 --=========================DAO===================
+SELECT * FROM post WHERE id = ?;
 
 UPDATE post
 SET POST_ID = ?, ID = ?, P_TEXT = ?, P_TIME =?
