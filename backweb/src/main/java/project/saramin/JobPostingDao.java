@@ -192,9 +192,9 @@ public static void main(String[] args) {
       );
    };
   
-   dao.updateJobPosting("3");
+//   dao.updateJobPosting("3");
    
-   dao.getJobPostingById("1");
+//   dao.getJobPostingById("1");
    
    }
 }

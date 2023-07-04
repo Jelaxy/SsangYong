@@ -3,7 +3,7 @@
 	import="com.google.gson.Gson"
 	import="backweb.z01_vo.Emp"   
 	import="java.util.List"   
-	import="backweb.a01_database.A04_PreparedDao" 
+	import="backweb.a01_dao.A04_PreparedDao" 
 %>
 
 <%

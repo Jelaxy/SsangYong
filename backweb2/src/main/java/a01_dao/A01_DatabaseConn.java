@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-
+// a01_dao.A01_DatabaseConn
 public class A01_DatabaseConn {
 	private static Connection con;
 	public static void setConn() throws SQLException {

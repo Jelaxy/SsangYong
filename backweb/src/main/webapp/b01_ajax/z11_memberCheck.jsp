@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"
 	import="com.google.gson.Gson"
 	import="backweb.z01_vo.Member"   
-	import="backweb.a01_database.A05_MemberDao" 
+	import="backweb.a01_dao.A05_MemberDao" 
 %>
 <% // ?id=himan
 	String id = request.getParameter("id");

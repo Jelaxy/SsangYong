@@ -1,5 +1,7 @@
 package z01_vo;
 
+
+// z01_vo.Department
 public class Department {
 	private int department_id;
 	private String department_name;

@@ -1,6 +1,6 @@
 package a01_dao;
 
-
+// a01_dao.A05_MemberDao
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

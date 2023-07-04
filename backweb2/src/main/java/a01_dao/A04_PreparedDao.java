@@ -1,6 +1,6 @@
 package a01_dao;
 
-
+// a01_dao.A04_PreparedDao
 
 
 import java.sql.Connection;
@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.Gson;
+
 import z01_vo.Code;
 import z01_vo.Department;
-import z01_vo.Dept;
 import z01_vo.Emp;
 import z01_vo.Employee;
 import z01_vo.Job;
@@ -28,6 +29,7 @@ public class A04_PreparedDao {
     private Connection con;
     private PreparedStatement pstmt;
     private ResultSet rs;
+
 
     public List<Employee> getEmpList(Map<String, String> sch) {
         List<Employee> elist = new ArrayList<>();
@@ -100,8 +102,7 @@ public class A04_PreparedDao {
         }
         return jobList;
     }
-    // Map<String, Sting> map = newHashMap<String, String>
-    // map.put("title",""); min_sal1, min_sal2
+
     public List<Job> getJob(Map<String, String> sch) {
         List<Job> jobList = new ArrayList<>();
         String sql = "SELECT * FROM jobs "
@@ -109,7 +110,7 @@ public class A04_PreparedDao {
         // where upper(컬럼) : 대상데이터를 대문자 변경
         // like LIKE UPPER(?) : 입력데이터로 대문자 변경
         // 대소문자 상관없이 검색이 가능하도록 처리.
-        try { 
+        try {
             con = DB.con();
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, "%" + sch.get("title") + "%");
@@ -401,23 +402,21 @@ public class A04_PreparedDao {
 	    return elist;
 	}
 
-	public List<Dept> getDeptList(String dname, String loc) {
-	    List<Dept> dlist = new ArrayList<>();
-	    String sql = "SELECT * FROM emp02 where ename like ? and job like ? order by empno ";
+	public List<Department> getDepartment() {
+	    List<Department> dlist = new ArrayList<>();
+	    String sql = "SELECT * FROM Department order by department_id";
 	    
 	    try {
 	        con = DB.con();
-	        pstmt = con.prepareStatement(sql);
-	        pstmt.setString(1, '%'+dname+"%");
-	        pstmt.setString(2, '%'+loc+"%");
+	        pstmt = con.prepareStatement(sql); 
 	        rs = pstmt.executeQuery();
-	        
 	
 	        while (rs.next()) {
-	            dlist.add(new Dept(
-	                    rs.getInt("deptno"),
-	                    rs.getString("dname"),
-	                    rs.getString("loc")
+	        	dlist.add(new Department(
+	                    rs.getInt("department_id"),
+	                    rs.getString("department_name"),
+	                    rs.getInt("manager_id"),
+	                    rs.getInt("location_id")
 	            ));
 	        }
 	    } catch (SQLException e) {
@@ -428,97 +427,6 @@ public class A04_PreparedDao {
 	        DB.close(rs, pstmt, con);
 	    }
 	    return dlist;
-	}
-
-	public List<Code> getCodeList(String title, int refno) {
-	    List<Code> clist = new ArrayList<>();
-	    String sql = "SELECT *\r\n"
-	    		+ "FROM CODE\r\n"
-	    		+ "WHERE title LIKE ?\r\n"
-	    		+ "START WITH refno = ?\r\n"
-	    		+ "CONNECT BY prior NO = refno";
-	    
-	    try {
-	        con = DB.con();
-	        pstmt = con.prepareStatement(sql);
-	        pstmt.setString(1, '%'+title+"%");
-	        pstmt.setInt(2, refno);
-	        rs = pstmt.executeQuery();
-	        
-	        while (rs.next()) {
-	        	clist.add(new Code(
-	                    rs.getInt("no"),
-	                    rs.getString("title"),
-	                    rs.getString("val"),
-	                    rs.getInt("refno"),
-	                    rs.getInt("ordno")
-	            ));
-	        }
-	    } catch (SQLException e) {
-	        System.out.println("DB 관련 오류: " + e.getMessage());
-	    } catch (Exception e) {
-	        System.out.println("일반 오류: " + e.getMessage());
-	    } finally {
-	        DB.close(rs, pstmt, con);
-	    }
-	    return clist;
-	}
-
-	// combo를하면 계속 등록하더라도 리스트내용을 정렬 방식까지
-	public List<Code> getCombo(int refno) {
-	    List<Code> clist = new ArrayList<>();
-	    String sql = "SELECT title, val\r\n"
-	    		+ "FROM CODE\r\n"
-	    		+ "WHERE refno LIKE ?\r\n"
-	    		+ "ORDER by ordno";
-	    
-	    try {
-	        con = DB.con();
-	        pstmt = con.prepareStatement(sql);
-	        pstmt.setInt(1, refno);
-	        rs = pstmt.executeQuery();
-	        
-	        while (rs.next()) {
-	        	clist.add(new Code(
-	                    rs.getString("title"),
-	                    rs.getString("val")
-	            ));
-	        }
-	    } catch (SQLException e) {
-	        System.out.println("DB 관련 오류: " + e.getMessage());
-	    } catch (Exception e) {
-	        System.out.println("일반 오류: " + e.getMessage());
-	    } finally {
-	        DB.close(rs, pstmt, con);
-	    }
-	    return clist;
-	}
-
-	public void insertCode(Code ins) {
-	    int isInsert = 0;
-	    String sql = "INSERT INTO code values"
-	    		+ "(code_seq.nextval, ?,?,?,?)";
-	    try {
-	        con = DB.con();
-	        con.setAutoCommit(false);
-	        pstmt = con.prepareStatement(sql);
-	        pstmt.setString(1, ins.getTitle());
-	        pstmt.setInt(2, ins.getRefno());
-	        pstmt.setInt(3, ins.getOrdno());
-	        pstmt.setString(4, ins.getVal());
-	        isInsert = pstmt.executeUpdate();
-	        if (isInsert == 1) {
-	            con.commit();
-	            System.out.println("등록 성공");
-	        }
-	    } catch (SQLException e) {
-	        System.out.println("DB 오류: " + e.getMessage());
-	        DB.rollback(con);
-	    } catch (Exception e) {
-	        System.out.println("일반 오류: " + e.getMessage());
-	    } finally {
-	        DB.close(rs, pstmt, con);
-	    }
 	}
 
 	public List<Emp> getEmpList(String ename, String job) {
@@ -553,6 +461,199 @@ public class A04_PreparedDao {
 	        DB.close(rs, pstmt, con);
 	    }
 	    return elist;
+	}
+
+	public List<Code> getCodeList(String title, int refno) {
+	    List<Code> elist = new ArrayList<Code>();
+	    String sql = "SELECT *\r\n"
+	    		+ "FROM code\r\n"
+	    		+ "WHERE title LIKE ?\r\n"
+	    		+ "START WITH refno = ?\r\n"
+	    		+ "CONNECT BY PRIOR NO =refno ";
+	    	
+	    try {
+	    	
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, '%'+title+"%");
+	        pstmt.setInt(2, refno);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            elist.add(new Code(
+	                    rs.getInt("no"),
+	                    rs.getString("title"),
+	                    rs.getString("val"),
+	                    rs.getInt("refno"),
+	                    rs.getInt("ordno")
+	            ));
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return elist;
+	}
+
+	public List<Code> getCombo(int refno) {
+	    List<Code> elist = new ArrayList<Code>();
+	    String sql = "SELECT title, val\r\n"
+	    		+ "FROM code\r\n"
+	    		+ "WHERE refno = ?\r\n"
+	    		+ "ORDER BY ordno ";
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, refno);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            elist.add(new Code(
+	                    rs.getString("title"),
+	                    rs.getString("val")
+	            ));
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return elist;
+	}
+
+	// void, int나 다른 유형을 하느냐?
+	// 외부이 이 메서드를 호출해서 등록/수정/삭제된 갯수를 알고자 할때.
+	// return int
+	// 등록/수정/삭제로 끝날 경우에는 void
+	
+	/*
+	INSERT INTO code VALUES (code_seq.nextval, '아이티사업',1006,4,40);
+			INSERT INTO code VALUES (code_seq.nextval, ?,?,?,?)
+	 * */
+	
+	public void insertCode(Code ins) {
+	    String sql = "INSERT INTO code VALUES"
+	    		+ " (code_seq.nextval, ?,?,?,?)";
+	    try {
+	        con = DB.con();
+	        con.setAutoCommit(false);
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, ins.getTitle());
+	        pstmt.setInt(2, ins.getRefno());
+	        pstmt.setInt(3, ins.getOrdno());
+	        pstmt.setString(4, ins.getVal());
+	        int result = pstmt.executeUpdate();
+	        if (result == 1) {
+	            con.commit();
+	            System.out.println("등록 성공");
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 오류: " + e.getMessage());
+	        DB.rollback(con);
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	}
+/*
+SELECT * 
+FROM code
+WHERE NO = ?
+UPDATE code
+    SET title = ?,
+        refno = ?,
+        ordno = ?,
+        val = ?
+   WHERE NO = ?
+delete
+FROM code
+WHERE NO = ?
+ * */
+	public Code getCode(int no) {
+	    Code c = null;
+	    String sql = " SELECT * \r\n"
+	    		+ "FROM code\r\n"
+	    		+ "WHERE NO = ?";
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, no);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            c = new Code(
+	                    rs.getInt("no"),
+	                    rs.getString("title"),
+	                    rs.getString("val"),
+	                    rs.getInt("refno"),
+	                    rs.getInt("ordno")
+	            );
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return c;
+	}
+
+	public void updateCode(Code upt) {
+	    String sql = "UPDATE code\r\n"
+	    		+ "    SET title = ?,\r\n"
+	    		+ "        refno = ?,\r\n"
+	    		+ "        ordno = ?,\r\n"
+	    		+ "        val = ?\r\n"
+	    		+ "   WHERE NO = ?";
+	    try {
+	        con = DB.con();
+	        con.setAutoCommit(false);
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, upt.getTitle());
+	        pstmt.setInt(2, upt.getRefno());
+	        pstmt.setInt(3, upt.getOrdno());
+	        pstmt.setString(4, upt.getVal());
+	        pstmt.setInt(5, upt.getNo());
+	        int result = pstmt.executeUpdate();
+	        if (result == 1) {
+	            con.commit();
+	            System.out.println("수정 성공");
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 오류: " + e.getMessage());
+	        DB.rollback(con);
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	}
+	public void deleteCode(int no) {
+	    String sql = "delete\r\n"
+	    		+ "FROM code\r\n"
+	    		+ "WHERE NO = ?";
+	    try {
+	        con = DB.con();
+	        con.setAutoCommit(false);
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, no);
+	        int result = pstmt.executeUpdate();
+	        if (result == 1) {
+	            con.commit();
+	            System.out.println("삭제 성공");
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 오류: " + e.getMessage());
+	        DB.rollback(con);
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
 	}
 
 	public static void main(String[] args) {
@@ -596,6 +697,8 @@ public class A04_PreparedDao {
 //            System.out.print(e.getEmail() + "\t");
 //            System.out.print(e.getSalary() + "\t");
 //            System.out.print(e.getDepartment_id() + "\n");
+        
 //        }
+        Gson g;
     }
 }
