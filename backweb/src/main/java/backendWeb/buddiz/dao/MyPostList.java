@@ -1,5 +1,6 @@
 package backendWeb.buddiz.dao;
 
+// backendWeb.buddiz.dao.MyPostList
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -80,10 +81,10 @@ public class MyPostList {
     
     
     
-    // 전체 게시물 불러오기
+    // 내 전체 게시물 불러오기
     public List<Post> getMyPosts() {
         List<Post> posts = new ArrayList<>();
-        String sql = "SELECT * FROM POST";
+        String sql = "SELECT * FROM post WHERE id = ?";
 
         try {
             con = DB.con();
