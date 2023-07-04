@@ -1,1 +1,2 @@
 SELECT * FROM member02;
+SELECT * form MEMBER;
