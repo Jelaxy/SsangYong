@@ -1,0 +1,69 @@
+@import './reset.css';
+
+body { height: 150vh; } 
+
+header { display: flex; flex-direction: column; justify-content: space-between; position: fixed; padding: 20px 30px 0 30px; z-index: 200; top: 0; left: 0; height: 100vh; border-right: 1px solid #999; background-color: #fff; } 
+header .headLogo { width: calc(100vw * 250 / 1920); } 
+header nav { height: 70%; font-size: 15px; } 
+header nav .navHome { display: flex; align-items: center; height: 45px; margin-bottom: 10px; border-radius: 12px; transition: all .3s ease;} 
+header nav .navHome:hover { background-color: #ffebce; }
+header nav .navHome:hover span { font-family: nMedium;}
+header nav .gnb { height: 200px; padding: 15px 0; display: flex; flex-direction: column; justify-content: space-around; border-bottom: 1px solid #999; border-top: 1px solid #999; } 
+header nav .gnb li { padding: calc(100vw * 12 / 1920) 0; border-radius: 12px; transition: all .3s ease; } 
+
+header nav li:hover { background-color: #ffebce; font-family: nMedium;}
+header nav li a { display: flex; align-items: center; } 
+header nav img { width: calc(100vw * 23 / 1920); margin-right: 15px; padding-left: 10px; } 
+
+header .writeBtn a { display: flex; align-items: center; margin: 0 0 80px 10px; transition: all .3s; } 
+header .writeBtn a:hover { color: var(--color-main);}
+header .writeBtn img { width: calc(100vw * 25 / 1920); margin: 0 15px 5px 0; } 
+
+aside { width: calc( 100vw * 270 / 1920); display: flex; flex-direction: column; position: fixed; padding: 30px 30px 0 30px; z-index: 200; top: 0; right: 0; height: 100vh; border-left: 1px solid #999; background-color: #fff; } 
+aside .ownerInfo { display: flex; align-items: center; }
+aside .ownerImg { width: calc(100vw * 45 / 1920 ); border-radius: 50%; border: 2px solid var(--color-main); }
+aside .ownerTxt { display: inline-block; margin-left: calc(100vw * 20 / 1920);}
+aside .ownerTxt p { font-size: 15px; font-family: nMedium; }
+aside .ownerTxt span { font-size: 12px; color: #777;}
+
+aside form { display: flex; align-items: center; justify-content: space-around; margin-top: calc(100vw * 20 / 1920 ); height: calc(100vh * 90 / 1920); background-color: #fff; border-radius: 20px; border: 1.5px solid #888;}
+aside form:focus-within  { border: 1.5px solid var(--color-main);}
+aside form input { margin-left: 10px; width: 70%; font-size: 13px; font-family: nLight; }
+aside form button { width: 20px; height: 20px; margin-right: 10px; background: url(../source/searchIco.png) center center; background-size: cover; border: none; outline: none; cursor: pointer; }
+aside .notice { padding: calc(100vh * 50 / 1920) 0 calc(100vh * 40 / 1920) 0; display: flex; align-items: center; font-size: 15px; border-bottom: 1px solid #999;}
+aside .notice img { width: calc(100vw * 30 / 1920 ); margin-right: 10px; }
+
+aside .ownerFrd { margin-top: 20px ;}
+aside .ownerFrd li { display: flex; align-items: center; justify-content: space-between; padding-bottom: 15px; }
+aside .ownerFrd li a { display: flex; align-items: center; font-size: 14px; color: #555; transition: all .3s;}
+aside .ownerFrd li:hover a { color: var(--color-main); font-family: nMedium;}
+aside .ownerFrd li .frdImg { margin-right: 10px; width: calc(100vw * 35 / 1920 ); border-radius: 50%; border: 2px solid var(--color-main); }
+aside .ownerFrd li .sendBtn { width: calc(100vw * 25 / 1920 ); }
+
+
+section { padding-top: 25px; width: calc(100vw * 1180 / 1920); margin: 0 auto; } 
+section .postSchBox { margin-bottom: 27px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; width: 90%; height: calc(100vh * 90 / 1920);  border-radius: 30px; border: 1.5px solid #888; background-color: #fff; }
+section .postSchBox button { width: 20px; height: 20px; margin-right: 10px; background: url(../source/searchIco.png) center center; background-size: cover; border: none; outline: none; cursor: pointer; }
+
+section .postAll { padding: 20px; margin-bottom: 20px; background: #fff; border-radius: 15px; box-shadow: 0px 0px 9px #62626244;  }
+section .postAll .postTop { position: relative; display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid #c3c3c3; }
+section .postAll .postUserImg { width: 35px; margin-right: 15px; border-radius: 50%; border: 2px solid var(--color-main); }
+section .postAll .postUserTxt { display: inline-block;}
+section .postAll .postUserTxt .puId { font-size: 12px; color: #777; }
+section .postAll .postUserTxt p { margin-top: 6px; font-size: 12px; color: #777; }
+section .postAll .postMore { position: relative; cursor: pointer;}
+section .postAll .postMore span { display: inline-block; margin-right: 3px; width: 4px; height: 4px; background-color: #333; border-radius: 10px; }
+section .postAll .moreList { display: none; position: absolute; top: 60%; right: -5%; background: #fff; border: 1px solid #999; border-radius: 10px; }
+section .postAll .moreList li { padding: 13px 15px; }
+
+section .postAll .pContent { padding: 15px; font-size: 16px; font-family: nLight; line-height: 150%; }
+
+section .postAll .postBottom { padding-top: 10px; border-top: 1px solid #c3c3c3; }
+section .postBottom button { background: #fff; border: none; outline: none; }
+section .postBottom button img { width: 27px; }
+
+/* --------------- scrollTop --------------- */
+#scrollTop { background: #fff; box-shadow: 0 1.7px calc(100vw * 4 / 1920) #6d6d6d7e; color: #000; align-content: center; width: calc(100vw * 50 / 1920); height: calc(100vw * 50 / 1920); border-radius: calc(100vw * 50 / 1920); text-align: center; font-size: calc(100vw * 12 / 1920); bottom: calc(100vw * 50 / 1920); right: calc(100vw * 370 / 1920); position: fixed; z-index: 300; cursor: pointer; } 
+#scrollTop:hover { transition: 0.5s ease; background-color: #ffe1b8; } 
+#scrollTop::before { content: "\2303"; position: absolute; top: calc(100vw * 9 / 1920); left: calc(100vw * 20 / 1920); color: #000; font-size: calc(100vw * 20 / 1920); } 
+#scrollTop .topTxt { display: block; margin-top: calc(100vw * 22 / 1920); font-size: calc(100vw * 13 / 1920); font-family: nRegular; } 

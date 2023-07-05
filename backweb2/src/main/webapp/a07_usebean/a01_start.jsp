@@ -12,7 +12,7 @@
 	ex)
 	public class BeanClassNAme{
 		private String values; // 값을 저장하는 필드
-		public BeabClassName(){}//기본생성지
+		public BeanClassName(){}//기본생성지
 		public String getValues(){} // 필드의 값을 읽어오는 property
 		public void setVaLue(String value){} // 값을 읽어오는 값
 # 자바빈 프로퍼티
@@ -24,7 +24,7 @@
 	- boolean 타입일 경우 getter에 get대신 is 사용 가능
 	- 배열 지정 가능 : 예) public void setName(String[])
 4. 읽기/쓰기
-	- 일기 전용 : get 또는 is 메서드만 존재하는 프로퍼티
+	- 읽기 전용 : get 또는 is 메서드만 존재하는 프로퍼티
 	- 읽기/쓰기 : get/set 또는 is/set메서드가 존재하는 프로퍼티
 # <jsp:useBean>태그
 1. jsp에서 자바빈 객체를 생성할 때 사용
@@ -33,17 +33,64 @@
 		id: jsp페이지에서 자바빈 객체에 접근할 때 사용할 이름
 		class : 패키지 이름을 포함한 자바빈 클래스의 완전한 이름
 		scope : 자바빈 객체가 저장될 영역을 지정 page, request, session, application
+		ex)
+		<jsp:useBean id="p01" class="vo.Person" scope="session">
+		Person p01 = new Person();
+		session.setAttribute("p01",p01);
 3. 자바빈  객체의 프로퍼티 값 설정
 	<jsp:setProperty name="id" property="이름" value="값"
 		name: 프로퍼티 값을 변경할 자바빈 객체의 이름
 				<jsp:useBean> 액션 태그의 id 속성에서 지정한 값을 사용
 		property: 값을 설정할 프로퍼티
 		value: 프로퍼티의 값
-	<jsp:setProperty name="id" property="이름" param="파라미터이름"
+	ex)
+	<jsp:setProperty name="p01" property="name" value="홍길동">
+		${p01.setName("홍길동")}
+		p01.setName("홍길동")
+		
+	<jsp:setProperty name="id" property="이름" param="파라미터이름">
 		param : 프로퍼티의 값으로 사용할 파라미터이름
 	<jsp:getProperty name="자바빈" property="프로퍼티"/>
+	ex)
+	<jsp:setProperty name="p01" property="name"/>
+	${p01.name}
+	p01.getName()
+4. 요청값 처리 기능
+	페이지?name=홍길동
+	<jsp:setProperty name="p01" property="name"/>
+	<jsp:setProperty name="p01" property="age"/>
+	요청값과 지정하는 메서드 이름이 다른 때, 요청값이름으로 property를 연동할 때 param을 활용한다.
+	==> 요청값이 querystring으로 있을 때, 저장된다.
+	p01.setName("홍길동");
+	단) vo(bean 클래스가)
+	public void setName(int num01){ (X)
 	
-
+	
+	public void setName(String name){ (O)
+	
+	
+	public void setAge(int age){ (O)
+	
+	
+	public void setAge(String str){ (O)
+	
+	# 최강기능
+	<jsp:setProperty name="p01" property="*"/>
+	querystring이 property와 동일한 이름과 할당가능한 type으로 선언되어 있으면 자동으로 모두 다 할당하겠습니다.
+	&name=홍길동&age=25&loc=서울
+	setName(String name);
+	setAge(int age){}
+	setLoc(String loc){}
+	
+	?name=홍길동&age=이십오세&loc=서울
+	setName(String name){}
+	setAge(String age){}
+	setLoc(String loc){}
+	
+	?name=홍길동&age=25&loc=서울
+	setName(String name){}
+	setAge(String age){}
+	setLoc(String loc){}
  --%>
 <!DOCTYPE html>
 <html>

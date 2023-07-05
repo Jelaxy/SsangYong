@@ -42,6 +42,17 @@ pageContext.request.contextPath
     			$(this).text("touch me??")
     		})		
     		/*
+    		
+    		# jquert 선택자
+    		1. $("선택자")
+    			단일 선택으로 처리할 수 있고,
+    			동일한 태그에 모든 기능을 처리할 때도 for문없이도 가능하다.
+    			$("h1").text("일괄변경")
+    			h1이 여러개 있더라ㄱ도 한꺼번에 모두 다 label을 일관 변경이 가능하다.
+    			$("h1").eq(index번호).text("특정 내용변경")
+    		
+    		
+    		
     		# 레이블 변경
     		1. innerText ==> 
     				$("선택자").text("변경할데이터")

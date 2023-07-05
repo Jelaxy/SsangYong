@@ -81,18 +81,19 @@ public class MyPostList {
     
     
     
-    // 내 전체 게시물 불러오기
-    public List<Post> getMyPosts() {
+ // 내 전체 게시물 불러오기
+    public List<Post> getMyPosts(String id) {
         List<Post> posts = new ArrayList<>();
         String sql = "SELECT * FROM post WHERE id = ?";
 
         try {
             con = DB.con();
             pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-            	Post post = postList(rs);
-            	posts.add(post);
+                Post post = postList(rs);
+                posts.add(post);
             }
         } catch (SQLException e) {
             System.out.println("DB 예외: " + e.getMessage());
@@ -103,6 +104,7 @@ public class MyPostList {
         }
         return posts;
     }
+
     
     
     
@@ -126,11 +128,7 @@ public class MyPostList {
 		   dao.deleteMyPost(2);
 		   
 
-		   for(Post p: dao.getMyPosts()) {
-		      System.out.print(
-		    	p.toString()
-		      );
-		   };
+
 		   
 		   dao.updateMyPost(new Post(2,"오늘 날씨 좋다", 2));
 		   	   

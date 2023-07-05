@@ -26,10 +26,10 @@ CREATE TABLE POST (
    FOREIGN KEY (ID) REFERENCES BUser (ID)
 );
 
-INSERT INTO POST values(1,'syr01','오늘 날씨 너무 더워서 수영도 못가겠다...',to_date(sysdate,'YYYY-MM-DD'),1);
+INSERT INTO POST values(1,'syr01','오늘 s날씨 너무 더워서 수영도 못가겠다...',to_date(sysdate,'YYYY-MM-DD'),1);
 INSERT INTO POST values(2,'kya01','스피닝 처음 다녀왔어요. 진짜 힘들지만 꾸준히 하면 근육도 생길 것 같아요. 성취감이 좋네요',to_date(sysdate,'YYYY-MM-DD'),2);
 INSERT INTO POST values(3,'kkw01','베이스 수업 2일차 입니다. 낭만 있어~',to_date(sysdate,'YYYY-MM-DD'),3);
-INSERT INTO POST values(4,'ysm01','여자친구 주려고 목도리 떴습니다',to_date(sysdate,'YYYY-MM-DD'),3);
+INSERT INTO POST values(4,'ysm01','여자친구 주려고 목도리 떴습니다',to_date(sysdate,'YYYY-MM-DD'),4);
 
 select * from post;
 

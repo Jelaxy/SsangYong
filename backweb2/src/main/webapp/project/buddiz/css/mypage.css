@@ -1,0 +1,237 @@
+#mePhoto{
+    min-width: 100px;
+    min-height: 100px;
+    width: 25vmin;
+    height: 25vmin;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/*========================================================*/
+
+
+@media (min-width: 768px)
+{.jumbotron {
+    padding-top: calc(var(--jumbotron-padding-y) * 2);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
+}
+.jumbotron {
+    padding-top: var(--jumbotron-padding-y);
+    padding-bottom: var(--jumbotron-padding-y);
+    margin-bottom: 0;
+}
+.text-center {
+    text-align: center!important;
+}}
+
+@media (min-width: 576px)
+{.jumbotron {
+    padding: 4rem 2rem;
+}
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+section {
+    display: block;
+    border-bottom: 1px solid #6c757d;
+}}
+
+/*========================================================*/
+
+body {
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    background-color: #fff;
+}
+
+/*========================================================*/
+
+.main {
+    display: block;
+    width: calc(100vw - (100vw * 270 / 1920)); 
+}
+
+
+/*========================================================*/
+.pb-5, .py-5 {
+    padding-bottom: 3rem!important;
+}
+.pt-5, .py-5 {
+    padding-top: 3rem!important;
+}
+.bg-light {
+    background-color: #f8f9fa!important;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+div {
+    display: block;
+}
+
+/*========================================================*/
+
+@media (min-width: 768px)
+{.container {
+    max-width: 1025px;
+}}
+
+.container {
+    width: 90%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+	justify-content: space-between;
+}
+div {
+    display: block;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+/*========================================================*/
+
+.row {
+    /*display: -ms-flexbox;*/
+    display: flex;
+  /*  -ms-flex-wrap: wrap; */
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+/*========================================================*/
+.col-md-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 33.3333%;
+    max-width: 33.333333%;
+    margin-bottom: 30px;
+    background-clip: border-box;
+}
+
+/*========================================================*/
+
+
+.mb-4, .my-4 {
+    margin-bottom: 1.5rem!important;
+}
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+}
+
+
+
+/*========================================================*/
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+/*========================================================*/
+
+
+.card-text {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+.card-text {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    line-height: 130%;
+}
+
+
+/*========================================================*/
+
+
+
+.align-items-center {
+    -ms-flex-align: center!important;
+    align-items: center!important;
+}
+.justify-content-between {
+    -ms-flex-pack: justify!important;
+    justify-content: space-between!important;
+}
+.d-flex {
+    display: -ms-flexbox!important;
+    display: flex!important;
+}
+
+
+/*========================================================*/
+
+
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+/*========================================================*/
+
+
+.text-muted {
+    color: #6c757d!important;
+}
+.small, small {
+    font-size: 80%;
+    font-weight: 400;
+}
+small {
+    font-size: 80%;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+small {
+    font-size: smaller;
+}
+
+
+/*========================================================*/
+
+
+
+
+
