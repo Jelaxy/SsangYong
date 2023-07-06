@@ -8,7 +8,7 @@
 
     if (id != null && !id.isEmpty()) {
         session.setAttribute("id", id);
-        response.sendRedirect("main.jsp");
+        response.sendRedirect("myPage.jsp");
     } else {
         out.println("유효한 ID 값을 입력하세요.");
     }

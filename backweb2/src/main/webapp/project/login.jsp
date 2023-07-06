@@ -2,13 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
-<%
-    String id = request.getParameter("id");
-
-    if (id != null && !id.isEmpty()) {
-        session.setAttribute("id", id);
-        response.sendRedirect("myPage.jsp");
-    } else {
-        out.println("유효한 ID 값을 입력하세요.");
-    }
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="login2.jsp" method="post">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
