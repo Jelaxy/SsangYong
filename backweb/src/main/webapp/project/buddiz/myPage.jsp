@@ -138,12 +138,10 @@
 	</div>
 <section>
 	  <%
-   // 로그인에서 아이디 값 받아오는게 없어서 일단 하드코딩했어요
-   // String id = (String) session.getAttribute("id");
+   	  String id = (String) session.getAttribute("id");
 	  BuddyPost dao = new BuddyPost();
 	
-	  // int postCnt = dao.getPostCount("id");
-	  int postCnt = dao.getPostCount("syr01");
+	  int postCnt = dao.getPostCount("id");
 	  %>
 	  <%-- 게시물수 --%>
   <div class="container" style="float:left">
