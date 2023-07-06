@@ -178,7 +178,7 @@
       <div class="row">
   <%
   MyPostList dao2 = new MyPostList();
-  List<Post> myPosts = dao2.getMyPosts("id");
+  List<Post> myPosts = dao2.getMyPosts("syr01");
   for(Post p:myPosts) {
   %>
     <div class="card mb-4 shadow-sm">

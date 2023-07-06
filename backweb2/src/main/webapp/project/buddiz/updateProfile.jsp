@@ -11,4 +11,5 @@ String pNum = request.getParameter("pNum");
 
 String responseText = "프로필이 업데이트되었습니다."; // 예시 응답 메시지
 response.getWriter().write(responseText);
+S
 %>
