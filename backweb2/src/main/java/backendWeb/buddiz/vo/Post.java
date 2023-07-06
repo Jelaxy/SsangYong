@@ -16,6 +16,22 @@ public Post() {
 
 
 
+
+
+
+
+public Post(int post_id, String p_text) {
+	super();
+	this.post_id = post_id;
+	this.p_text = p_text;
+}
+
+
+
+
+
+
+
 public Post(int post_id, String p_text, int tag_id) {
 	super();
 	this.post_id = post_id;

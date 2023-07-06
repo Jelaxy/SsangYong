@@ -84,57 +84,43 @@
 			</p>
 		  </div>
 		  
-	<div class="modal" id="myModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-
-				<div class="modal-header">
-					<h4 class="modal-title">프로필 수정</h4>
-
-				</div>
-				<form id="regFrm">
-				<div class="modal-body">
-					<div class="mb-3 mt-3">
-						<label for="N_NAME"></label> 
-						<input type="text"
-							class="form-control" id="N_NAME"
-						placeholder="닉네임 입력" name="N_NAME">
-					</div>
-					<div class="mb-3 mt-3">
-						<label for="Name"></label> 
-						<input type="text"
-							class="form-control" id="Name"
-						placeholder="이름 입력" name="Name">
-					</div>
-					<div class="mb-3 mt-3">
-						<label for="B_DAY"></label> 
-						<input type="text"
-							class="form-control" id="B_DAY"
-						placeholder="생년월일 입력" name="B_DAY">
-					</div>
-					<div class="mb-3 mt-3">
-						<label for="MAIL"></label> 
-						<input type="text"
-							class="form-control" id="MAIL"
-						placeholder="이메일 입력" name="MAIL">
-					</div>
-					<div class="mb-3 mt-3">
-						<label for="P_NUM"></label> 
-						<input type="text"
-							class="form-control" id="P_NUM"
-						placeholder="연락처 입력" name="P_NUM">
-					</div>
-				</div>
-				</form>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary"
-						onclick="update()">수정</button>
-					<button type="button" class="btn btn-danger"
-						data-bs-dismiss="modal">닫기</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">프로필 수정</h4>
+      </div>
+      <form id="regFrm">
+        <div class="modal-body">
+          <div class="mb-3 mt-3">
+            <label for="N_NAME"></label>
+            <input type="text" class="form-control" id="N_NAME" placeholder="닉네임 입력" name="N_NAME">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="Name"></label>
+            <input type="text" class="form-control" id="Name" placeholder="이름 입력" name="Name">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="B_DAY"></label>
+            <input type="text" class="form-control" id="B_DAY" placeholder="생년월일 입력" name="B_DAY">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="MAIL"></label>
+            <input type="text" class="form-control" id="MAIL" placeholder="이메일 입력" name="MAIL">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="P_NUM"></label>
+            <input type="text" class="form-control" id="P_NUM" placeholder="연락처 입력" name="P_NUM">
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="update()">수정</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
 	</div>
 	
 	
@@ -202,6 +188,29 @@
       
     </div>
   </section>
+  
+  
+<!-- 모달 -->
+<div class="modal" id="editModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">게시물 수정</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="editForm">
+          <input type="hidden" id="postId">
+          <div class="form-group">
+            <label for="editText">내용:</label>
+            <textarea class="form-control" id="editText" rows="3"></textarea>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="submitEdit()">저장</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 </main>
 </body>
