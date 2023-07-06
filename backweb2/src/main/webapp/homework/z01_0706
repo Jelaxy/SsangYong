@@ -1,0 +1,59 @@
+1. Servlet을 사용하여 Ajax 요청을 처리하는 방법에 대한 설명으로 옳은 것은?
+a. Servlet에서 Ajax 요청을 처리하기 위해서는 doPost() 메서드를 사용해야 한다.
+b. Servlet에서 Ajax 요청을 처리하기 위해서는 doGet() 메서드를 사용해야 한다.
+c. Servlet에서 Ajax 요청을 처리할 때는 요청의 캐릭터 인코딩을 설정해야 한다. #
+d. Servlet에서는 Ajax 요청을 처리할 수 없다.
+
+2. 아래 코드에서 JSON 객체를 생성하기 위해 사용되는 라이브러리는?
+a. Gson #
+b. jQuery
+c. jackson
+d. org.json
+
+3. jQuery의 ajax() 함수에서 dataType 옵션은 무엇을 의미하는가?
+a. 서버로부터 받아온 데이터의 타입을 지정한다.
+b. 요청한 데이터의 타입을 지정한다. #
+c. 요청에 대한 응답으로 받아온 데이터의 타입을 지정한다.
+d. dataType 옵션은 존재하지 않는다.
+
+4. $("#regBtn").click(function(){ 은 무엇을 나타내는가?
+a. regBtn이라는 id를 가진 요소가 클릭되었을 때 실행되는 코드를 정의한다.
+b. id가 regBtn인 요소를 클릭했을 때 실행되는 이벤트 핸들러를 정의한다. #
+c. regBtn이라는 id를 가진 요소에 클릭 이벤트를 바인딩한다.
+d. id가 regBtn인 요소에 클릭 이벤트를 등록한다.
+
+5. $("#frm").serialize()는 무엇을 반환하는가?
+a. form 요소 내의 모든 입력 필드의 값을 직렬화된 문자열로 반환한다. #
+b. form 요소 내의 선택된 입력 필드의 값을 직렬화된 문자열로 반환한다.
+c. form 요소의 id를 반환한다.
+d. form 요소 내의 모든 입력 필드의 값을 객체로 반환한다.
+
+6. event.keyCode == 13은 무엇을 나타내는가?
+a. 키보드의 숫자 13을 눌렀을 때 실행된다.
+b. 엔터 키를 눌렀을 때 실행된다. #
+c. event 객체의 keyCode 속성이 13일 때 실행된다.
+d. keyCode가 13일 때 실행된다.
+
+7. $("#deptno").keyup(function(){ 은 무엇을 나타내는가?
+a. id가 deptno인 요소의 keyup 이벤트를 등록한다.
+b. id가 deptno인 요소의 keyup 이벤트를 바인딩한다. #
+c. deptno라는 클래스를 가진 요소의 keyup 이벤트를 등록한다.
+d. deptno라는 클래스를 가진 요소의 keyup 이벤트를 바인딩한다.
+
+8. Servlet에서 요청 값의 캐릭터 인코딩을 설정하기 위한 코드는?
+a. request.setCharacterEncoding("utf-8"); #
+b. response.setCharacterEncoding("utf-8");
+c. response.setContentType("text/plain;utf-8");
+d. response.getWriter().print( g.toJson(p) );
+
+9. Servlet에서 클라이언트로 응답할 데이터의 캐릭터 인코딩을 설정하기 위한 코드는?
+a. request.setCharacterEncoding("utf-8");
+b. response.setCharacterEncoding("utf-8"); #
+c. response.setContentType("text/plain;utf-8"); #
+d. response.getWriter().print( g.toJson(p) );
+
+10. AJAX 요청에서 사용되는 메서드로, 입력 필드의 특정 키 이벤트를 감지하는 함수는?
+a. $.get()
+b. $.post()
+c. $.ajax()
+d. $(selector).keyup() #

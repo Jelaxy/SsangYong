@@ -1,6 +1,6 @@
 package z01_vo;
 
-// backweb.z01_vo.Code
+// z01_vo.Code
 public class Code {
 	 private int no;
 	 private String title;
@@ -11,6 +11,7 @@ public class Code {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public Code(int no, String title, String val, int refno, int ordno) {
 		super();
 		this.no = no;
@@ -19,6 +20,8 @@ public class Code {
 		this.refno = refno;
 		this.ordno = ordno;
 	}
+
+
 	
 	public Code(String title, String val) {
 		super();

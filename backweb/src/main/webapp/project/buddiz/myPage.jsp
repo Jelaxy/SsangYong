@@ -137,18 +137,23 @@
 	</div>
 	</div>
 <section>
-  <%
-  BuddyPost dao = new BuddyPost();
-  int postCnt = dao.getPostCount();
-  %>
+	  <%
+   // 로그인에서 아이디 값 받아오는게 없어서 일단 하드코딩했어요
+   // String id = (String) session.getAttribute("id");
+	  BuddyPost dao = new BuddyPost();
+	
+	  // int postCnt = dao.getPostCount("id");
+	  int postCnt = dao.getPostCount("syr01");
+	  %>
+	  <%-- 게시물수 --%>
   <div class="container" style="float:left">
     <div>
       <h3>게시물</h3>
       <h3><%=postCnt %></h3>
     </div>
   </div>
-
-  <% int freCnt = dao.getFriendCount(); %>
+	  <%-- 친구수 --%>
+	  <% //int freCnt = dao.getFriendCount(id); %>
   <div class="container" style="float:right;">
     <div>
       <h3>친구수</h3>
@@ -164,8 +169,10 @@
 
       <div class="row">
   <%
+  // String id = (String) session.getAttribute("id");
+  String id = "syl01";
   MyPostList dao2 = new MyPostList();
-  List<Post> posts = dao2.getMyPosts();
+  List<Post> posts = dao2.getMyPosts(id);
   %>
   <%
   for (Post post : posts) { %>

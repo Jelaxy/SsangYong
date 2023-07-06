@@ -1,8 +1,5 @@
 package a01_dao;
 
-// a01_dao.A04_PreparedDao
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +19,7 @@ import z01_vo.JobHistory;
 import z01_vo.Location;
 import z01_vo.Manager;
 
+// a01_dao.A04_PreparedDao
 
 // ctrl+shift+o
 
@@ -656,12 +654,42 @@ WHERE NO = ?
 	    }
 	}
 
+	public List<Job> getJobs(String job_id) {
+		List<Job> jlist = new ArrayList<Job>(); 
+	    String sql = "	SELECT * \r\n"
+	    		+ "FROM jobs\r\n"
+	    		+ "WHERE JOB_ID like ? ";
+	    System.out.println("# DB 접속 #");
+	    try {
+	        con = DB.con();
+	        pstmt = con.prepareStatement(sql); 
+	        pstmt.setString(1, '%'+job_id+'%');; 
+	        rs = pstmt.executeQuery();
+	        //job_id, job_title, min_salary, max_salary
+	        while (rs.next()) {
+	        	jlist.add(new Job(
+	        			rs.getString("job_id"),
+	        			rs.getString("job_title"),
+	        			rs.getInt("min_salary"),
+	        			rs.getInt("max_salary")
+	        			)
+	        	);
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 관련 오류: " + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 오류: " + e.getMessage());
+	    } finally {
+	        DB.close(rs, pstmt, con);
+	    }
+	    return jlist;
+	}
+
 	public static void main(String[] args) {
         A04_PreparedDao dao = new A04_PreparedDao();
-        dao.deleteLocation(1000);
-        dao.deleteLocation(1100);
-        dao.deleteLocation(1200);
-
+//        dao.deleteLocation(1000);
+//        dao.deleteLocation(1100);
+//        dao.deleteLocation(1200);
 //        dao.updateLocation(new Location(1100, "삼성로", "401123", "서울", "서울", "SE"));
 //        dao.updateEmp(new Emp(7499, "오길동(upt)", "대리", "2023/06/01", 5000.0));
 //        dao.insertDepartments(new Department(350, "재무", 300, 1800));
@@ -699,6 +727,7 @@ WHERE NO = ?
 //            System.out.print(e.getDepartment_id() + "\n");
         
 //        }
+
         Gson g;
     }
 }

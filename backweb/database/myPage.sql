@@ -8,8 +8,6 @@ CREATE TABLE BUser(
    P_NUM varchar2(11) 
 );
 
-DROP TABLE BUser;
-
 INSERT INTO BUser VALUES('kkw01','경웅','111111111','980714','rkd@naver.com','01011112222');
 INSERT INTO BUser VALUES('ysm01','석민','222222222','980309','tjrals@naver.com','01033334444');
 INSERT INTO BUser VALUES('kya01','윤아','333333333','000912','dbsdk@naver.com','01055556666');
@@ -26,13 +24,17 @@ CREATE TABLE POST (
    FOREIGN KEY (ID) REFERENCES BUser (ID)
 );
 
-INSERT INTO POST values(1,'syr01','오늘 s날씨 너무 더워서 수영도 못가겠다...',to_date(sysdate,'YYYY-MM-DD'),1);
+INSERT INTO POST values(1,'syr01','오늘 날씨 너무 더워서 수영도 못가겠다...',to_date(sysdate,'YYYY-MM-DD'),1);
 INSERT INTO POST values(2,'kya01','스피닝 처음 다녀왔어요. 진짜 힘들지만 꾸준히 하면 근육도 생길 것 같아요. 성취감이 좋네요',to_date(sysdate,'YYYY-MM-DD'),2);
 INSERT INTO POST values(3,'kkw01','베이스 수업 2일차 입니다. 낭만 있어~',to_date(sysdate,'YYYY-MM-DD'),3);
-INSERT INTO POST values(4,'ysm01','여자친구 주려고 목도리 떴습니다',to_date(sysdate,'YYYY-MM-DD'),4);
+INSERT INTO POST values(4,'syr01','여자친구 주려고 목도리 떴습니다',to_date(sysdate,'YYYY-MM-DD'),4);
+INSERT INTO POST values(5,'syr01','다이어트식 처음 만들어 봤습니다...요리 잘하시는 분들 정말 대단한 것 같아요ㅠㅠ 아직 요린이라 그런가 어렵네요ㅠㅠㅠ',to_date(sysdate,'YYYY-MM-DD'),5);
+INSERT INTO POST values(6,'syr01','[국비 코딩수업] 2개월차입니다. 아직도 하나도 모르겠습니다. 나중에 할 최종 프로젝트가 벌써부터 걱정되네요. 이미 수료하신 분들은 어떠신가요?',to_date(sysdate,'YYYY-MM-DD'),6);
+INSERT INTO POST values(7,'syr01','남자친구 주려고 니트 떴어요. 탑다운 방식이라 금방 떴습니다ㅋㅋㅋㅋㅋ 도안 너무 예뻐서 만원이어도 후회가 안되네요. 다들 하나씩 하세요',to_date(sysdate,'YYYY-MM-DD'),4);
 
 select * from post;
 
+COMMIT;
 --=========================댓글===================
 CREATE TABLE COM_MENT(
    COMMENT_ID NUMBER PRIMARY KEY,
@@ -219,3 +221,8 @@ ORDER BY p.post_id;
 SELECT *
 FROM post
 WHERE post_id = ?;
+
+SELECT * FROM post;
+
+SELECT * FROM POST 
+WHERE ID = 'syr01' ORDER BY P_TIME DESC;

@@ -10,16 +10,7 @@
 /*========================================================*/
 
 
-@media (min-width: 768px)
-{.jumbotron {
-    padding-top: calc(var(--jumbotron-padding-y) * 2);
-    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
-}
-.jumbotron {
-    padding-top: var(--jumbotron-padding-y);
-    padding-bottom: var(--jumbotron-padding-y);
-    margin-bottom: 0;
-}
+@media (min-width: 768px) {
 .text-center {
     text-align: center!important;
 }}
@@ -33,16 +24,6 @@
     margin-bottom: 2rem;
     border-radius: 0.3rem;
 }
-
-*, ::after, ::before {
-    box-sizing: border-box;
-}
-
-section {
-    display: block;
-    border-bottom: 1px solid #6c757d;
-}}
-
 /*========================================================*/
 
 body {
@@ -68,37 +49,34 @@ body {
 .pt-5, .py-5 {
     padding-top: 3rem!important;
 }
-.bg-light {
-    background-color: #f8f9fa!important;
-}
-*, ::after, ::before {
-    box-sizing: border-box;
-}
-div {
-    display: block;
-}
 
 /*========================================================*/
+.profBottom {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-@media (min-width: 768px)
-{.container {
-    max-width: 1025px;
-}}
+
+.pbContainer {
+	display:flex;
+	flex-direction: column;
+	width: 50%;
+}
+
+.pbold { 
+	font-family: nMedium;
+	margin-bottom : 5px;
+}
+
 
 .container {
-    width: 90%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
     display: flex;
 	justify-content: space-between;
-}
-div {
-    display: block;
-}
-*, ::after, ::before {
-    box-sizing: border-box;
 }
 /*========================================================*/
 

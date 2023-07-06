@@ -1,34 +1,32 @@
+function update() {
+    var nName = document.getElementById("N_NAME").value;
+    var name = document.getElementById("Name").value;
+    var bDay = document.getElementById("B_DAY").value;
+    var mail = document.getElementById("MAIL").value;
+    var pNum = document.getElementById("P_NUM").value;
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "updateProfile", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-var openModalButton = document.getElementById("openModalButton");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            
+            var response = xhr.responseText;
 
+            closeModal();
+        }
+    };
+    
+    
+    xhr.send("nName=" + encodeURIComponent(nName) +
+             "&name=" + encodeURIComponent(name) +
+             "&bDay=" + encodeURIComponent(bDay) +
+             "&mail=" + encodeURIComponent(mail) +
+             "&pNum=" + encodeURIComponent(pNum));
+}
 
-var modal = document.getElementById("myModal");
-
-var closeButton = document.getElementsByClassName("close")[0];
-
-
-function checkPassword() {
-	  var storedPassword = "비밀번호를 가져옵니다.";
-	  var userInput = prompt("비밀번호를 입력하세요.");
-
-	  if (userInput !== storedPassword) {
-	    alert("유효하지 않은 비밀번호입니다.");
-	    return false;
-	  }
-	}
-    	function callAjax(){
-    		var xhr = new XMLHttpRequest()
-    		xhr.open("get","z02_data.jsp",false);
-    		xhr.send()
-    		var data = xhr.responseText
-    		//alert(data)
-    		var arry = data.split(",")
-    		//alert(arry)
-    		var tds = document.querySelectorAll("tbody td")
-    		arry.forEach(function(prod,idx){
-    			//console.log(prod+":"+idx)
-    			tds[idx].innerText = prod
-    		})
-    		
-    		
-    	}
+function closeModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+}
