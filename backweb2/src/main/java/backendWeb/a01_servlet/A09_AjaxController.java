@@ -1,4 +1,4 @@
-package a01_servlet;
+package backendWeb.a01_servlet;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import backendWeb.z01_vo.Product;
+import z01_vo.Product;
 
 /**
  * Servlet implementation class A09_AjaxController
@@ -43,10 +43,6 @@ public class A09_AjaxController extends HttpServlet {
 		int cnt = 0;
 		if(cntS!=null&&!cntS.equals(""))
 			cnt = Integer.parseInt(cntS);
-			
-
-		
-		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/plain;utf-8");
 		/* 요청값을 객체로 만들어서 전송*/

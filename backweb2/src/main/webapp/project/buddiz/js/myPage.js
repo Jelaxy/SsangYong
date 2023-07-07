@@ -37,9 +37,36 @@ function processUserInput(nName, name, bDay, mail, pNum) {
 }
 
 function closeModal() {
-  var modal = document.getElementById("myModal");
+  var modal = document.getElementById("editFrm");
   modal.style.display = "none";
 }
+
+
+    	$(document).ready( function(){
+    		$("#openModalButton").click(function(){
+    			if(confirm("수정하시겠습니까?")){
+
+    				$.ajax({
+    					url:"${path}/postUpdate.do",
+    					type:"post",
+    					data:$("#editFrm").serialize(),
+    					dataType:"json",
+    					success:function(myPosts){
+    						alert("수정성공")
+							console.log(code)
+							$("#editFrm #editText").val(Post.p_text)
+    					},
+    					error:function(err){
+    						console.log("#에러발생#")
+    						console.log(err)
+    					}
+    				})		
+    			}
+    		})
+    		
+    	});
+
+
 
 
 

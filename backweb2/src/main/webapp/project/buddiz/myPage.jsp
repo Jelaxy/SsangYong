@@ -121,7 +121,7 @@
         </div>
       </form>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="update()">수정</button>
+        <button type="button" class="btn btn-outline-secondary" onclick="update()">수정</button>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">닫기</button>
       </div>
     </div>
@@ -130,32 +130,32 @@
 	</div>
 	
 	
-<section>
-	<div class="profBottom">
-	
-	  <%
-      String id = (String) session.getAttribute("id");
-	  BuddyPost dao = new BuddyPost();
-	  
-	  int postCnt = dao.getPostCount(id);
-	  %>
-	  <%-- 게시물수 --%>
-	  <div class="pbContainer">
-	      <h3 class="pbold">게시물</h3>
-	      <h3><%=postCnt %></h3>
-	    
-	  </div>
-	  <%-- 친구수 --%>
-	  <% int freCnt = dao.getFriendCount(id); %>
-
-	  <div class="pbContainer">
-	      <h3 class="pbold">친구수</h3>
-	      <h3><%=freCnt %></h3>
-	   
-	  </div>
+	<section>
+		<div class="profBottom">
 		
-	</div>
-</section>
+		  <%
+	      String id = (String) session.getAttribute("id");
+		  BuddyPost dao = new BuddyPost();
+		  
+		  int postCnt = dao.getPostCount(id);
+		  %>
+		  <%-- 게시물수 --%>
+		  <div class="pbContainer">
+		      <h3 class="pbold">게시물</h3>
+		      <h3><%=postCnt %></h3>
+		    
+		  </div>
+		  <%-- 친구수 --%>
+		  <% int freCnt = dao.getFriendCount(id); %>
+	
+		  <div class="pbContainer">
+		      <h3 class="pbold">친구수</h3>
+		      <h3><%=freCnt %></h3>
+		   
+		  </div>
+			
+		</div>
+	</section>
 	
 	
 	
@@ -182,10 +182,10 @@
             <button type="button"
 			id="openModalButton" class="btn btn-sm btn-outline-secondary"
 			onclick="editModal()" data-bs-toggle="modal" 
-			data-bs-target="#editModal">수정</button>
+			data-bs-target="#editModal" style="color:#f75904">수정</button>
             <button type="button"
             class="btn btn-sm btn-outline-secondary"
-            onclick="deletePost()">삭제</button>
+            onclick="deletePost()" style="color:#ff3f21">삭제</button>
           </div>
           <small class="text-muted"><%= p.getP_time() %></small>
         </div>
@@ -206,16 +206,23 @@
 	      <div class="modal-header">
 	        <h4 class="modal-title">게시물 수정</h4>
 	      </div>
-	      <form id="regFrm">
+	      <form id="editFrm">
 	        <div class="modal-body">
 	          <div class="mb-3 mt-3">
 	            <label for="editText">내용:</label>
-	            <textarea class="form-control" id="editText" rows="3"></textarea>
+	            <textarea class="form-control"
+	            id="editText" name="editText"
+	            rows="7"></textarea>
 	          </div>
 	        </div>
 	      </form>
 	      <div class="modal-footer">
-			<button type="button" class="btn btn-primary" onclick="submitEdit()">저장</button>
+			<button type="button"
+			class="btn btn-outline-secondary"
+			onclick="submitEdit()">저장</button>
+			<button type="button"
+			class="btn btn-danger"
+			data-bs-dismiss="modal">닫기</button>
 	      </div>
 	    </div>
 	  </div>

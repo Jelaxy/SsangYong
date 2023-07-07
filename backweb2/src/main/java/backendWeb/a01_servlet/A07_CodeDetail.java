@@ -1,7 +1,6 @@
-package a01_servlet;
+package backendWeb.a01_servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,19 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import a01_dao.A04_PreparedDao;
-import z01_vo.Job;
+import z01_vo.Code;
 
 /**
- * Servlet implementation class A12_AjaxControllerJob
+ * Servlet implementation class A07_CodeDetail
  */
-@WebServlet(name = "job.do", urlPatterns = { "/job.do" })
-public class A12_AjaxControllerJob extends HttpServlet {
+@WebServlet(name = "codeDetail.do", urlPatterns = { "/codeDetail.do" })
+public class A07_CodeDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public A12_AjaxControllerJob() {
+    public A07_CodeDetail() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,21 +33,27 @@ public class A12_AjaxControllerJob extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// List까지 처리하고 
-		// 1. 요청값처리
-		String job_id = request.getParameter("job_id");
-		if(job_id==null) job_id="";
+		// 1. 요청처리
+		String noS = request.getParameter("no");
+		int no = 0;
+		if(noS!=null) no = Integer.parseInt(noS); 
 		
-		// 2. model 핵심데이터 처리
+		// 2. Model 처리
 		A04_PreparedDao dao = new A04_PreparedDao();
-		List<Job> jlist = dao.getJobs(job_id);
+		Code d = dao.getCode(no);
 		
-		// 3. view 호출
-		Gson gson = new Gson();
-		response.getWriter().print(gson.toJson(jlist));
+		
+		// 3. view(json)
+		Gson g = new Gson();
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/plain;utf-8");
+		if(d!=null) {
+			response.getWriter().print(g.toJson(d));
+		}else {
+			response.getWriter().print("[]");
+		}
 		
 		
 	}
 
 }
-

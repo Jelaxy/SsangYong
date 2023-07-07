@@ -1,4 +1,4 @@
-package a01_servlet;
+package backendWeb.a01_servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

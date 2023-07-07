@@ -1,4 +1,4 @@
-package a01_servlet;
+package backendWeb.a01_servlet;
 
 import java.io.IOException;
 
@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import a01_dao.A04_PreparedDao;
-import z01_vo.Code;
+import z01_vo.Music;
 
 /**
- * Servlet implementation class A07_CodeDetail
+ * Servlet implementation class A10_AjaxController
  */
-@WebServlet(name = "codeDetail.do", urlPatterns = { "/codeDetail.do" })
-public class A07_CodeDetail extends HttpServlet {
+@WebServlet(name = "music.do", urlPatterns = { "/music.do" })
+public class A10_AjaxController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public A07_CodeDetail() {
+    public A10_AjaxController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,28 +31,22 @@ public class A07_CodeDetail extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		// TODO Auto-generated method stub
-		// 1. 요청처리
-		String noS = request.getParameter("no");
-		int no = 0;
-		if(noS!=null) no = Integer.parseInt(noS); 
+		String mname = request.getParameter("mname");
+		String singer = request.getParameter("singer");
+		String pubyearS = request.getParameter("pubyear");
+		if(mname==null)mname = "";
+		if(singer==null)singer = "";
+		int pubyear = 0;
+		if(pubyearS!=null&&!pubyearS.equals(""))
+			pubyear = Integer.parseInt(pubyearS);
 		
-		// 2. Model 처리
-		A04_PreparedDao dao = new A04_PreparedDao();
-		Code d = dao.getCode(no);
-		
-		
-		// 3. view(json)
+		Music m = new Music(mname,singer,pubyear);
 		Gson g = new Gson();
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/plain;utf-8");
-		if(d!=null) {
-			response.getWriter().print(g.toJson(d));
-		}else {
-			response.getWriter().print("[]");
-		}
-		
-		
+		response.getWriter().print(g.toJson(m));
 	}
 
 }

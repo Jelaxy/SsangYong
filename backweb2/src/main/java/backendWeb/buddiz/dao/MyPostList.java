@@ -84,18 +84,20 @@ import backendWeb.buddiz.vo.Post;
 	        return isDelete;
 	    }
     
-	    public int updateMyProfile(BUser BUser) {
+	    public int updateMyProfile(BUser user) {
 	        int isUpdate = 0;
-	        String sql = "UPDATE post\r\n"
-	            + "SET P_TEXT = ?, TAG_ID = ?\r\n"
-	            + "WHERE POST_ID = ?";
+	        String sql = "UPDATE BUser\r\n"
+	            + "SET * = ?\r\n"
+	            + "WHERE ID = ?";
 	        try {
 	            con = DB.con();
 	            con.setAutoCommit(false);
 	            pstmt = con.prepareStatement(sql);
-	            pstmt.setString(1, post.getP_text());
-	            pstmt.setInt(2, post.getTag_id());
-	            pstmt.setInt(3, post.getPost_id());
+	            pstmt.setString(1, user.getN_name());
+	            pstmt.setString(2, user.getB_day());
+	            pstmt.setString(3, user.getName());
+	            pstmt.setString(4, user.getP_num());
+	            pstmt.setString(5, user.getMail());
 	            isUpdate = pstmt.executeUpdate();
 	            if (isUpdate == 1) {
 	                con.commit();

@@ -3,7 +3,7 @@
 	import="com.google.gson.Gson"
 	import="backweb.z01_vo.Code"   
 	import="java.util.List"   
-	import="backweb.a01_dao.A04_PreparedDao" 
+	import="a01_dao.A04_PreparedDao" 
 %>
 <%
 String title = request.getParameter("title");

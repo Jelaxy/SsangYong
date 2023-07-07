@@ -1,4 +1,4 @@
-package a01_servlet;
+package backendWeb.a01_servlet;
 
 import java.io.IOException;
 
@@ -48,12 +48,10 @@ public class PostUpdate extends HttpServlet {
         
         Post post = new Post(0,"");
 		if(post_id!=0) {
-			
 			// 2. 수정처리
 			Post upt = new Post(post_id, editText);
 			MyPostList dao = new MyPostList();
 			dao.updateMyPost(upt);
-
 		}
 		// 4. json데이터 처리
 		Gson g = new Gson();

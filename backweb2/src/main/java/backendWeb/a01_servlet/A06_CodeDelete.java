@@ -1,23 +1,23 @@
-package a01_servlet;
+package backendWeb.a01_servlet;
 
 import java.io.IOException;
-import java.io.Writer;
-
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class A02_Servlet
+ * Servlet implementation class A06_CodeDelete
  */
-public class A02_Servlet extends HttpServlet {
+@WebServlet(name = "codeDel.do", urlPatterns = { "/codeDel.do" })
+public class A06_CodeDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public A02_Servlet() {
+    public A06_CodeDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,12 +27,6 @@ public class A02_Servlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Writer out = response.getWriter();
-		String name="Mr.R ";
-		for(int cnt=1;cnt<=10;cnt++) {
-			out.write(cnt+") Have a nice day!! "
-					+name+" !!");
-		}
 	}
 
 }
