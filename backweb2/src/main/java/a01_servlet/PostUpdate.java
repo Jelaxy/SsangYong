@@ -43,14 +43,14 @@ public class PostUpdate extends HttpServlet {
 		if(post_idS!=null&&!post_idS.equals("")) 
 			post_id = Integer.parseInt(post_idS);
 		
-        String p_text = request.getParameter("p_text");
-        if(p_text==null) p_text="";
+        String editText = request.getParameter("editText");
+        if(editText==null) editText="";
         
         Post post = new Post(0,"");
 		if(post_id!=0) {
 			
 			// 2. 수정처리
-			Post upt = new Post(post_id, p_text);
+			Post upt = new Post(post_id, editText);
 			MyPostList dao = new MyPostList();
 			dao.updateMyPost(upt);
 

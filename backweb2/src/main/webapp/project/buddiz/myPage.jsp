@@ -4,6 +4,7 @@
     import="backendWeb.buddiz.vo.Post"
     import="backendWeb.buddiz.dao.MyPostList"
     import="backendWeb.buddiz.dao.BuddyPost"
+    import="backendWeb.buddiz.vo.BUser"
 %>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="./css/header.css" rel="stylesheet">
@@ -70,9 +73,11 @@
 <section class="jumbotron text-center">
 	<div class="container">
 		<div class="col-md-12">
-		<% %>
+		<%
+		BUser user = new BUser();
+		%>
 			<img id="mePhoto" src="./source/흠냐륑.jpg"> 
-					<button type="button" onclick="checkPassword()"
+					<button type="button"
 					id="openModalButton" class="btn btn-primary"
 					data-bs-toggle="modal"
 					data-bs-target="#myModal">프로필 수정</button>
@@ -80,7 +85,8 @@
 				율림
 			</h3>
 			<p>
-				낮에는 코드짜고 밤에는 니트짜는 사람
+				낮에는 코드, 밤에는 니트짜는 사람
+
 			</p>
 		  </div>
 		  
@@ -130,8 +136,8 @@
 	  <%
       String id = (String) session.getAttribute("id");
 	  BuddyPost dao = new BuddyPost();
-	
-	  int postCnt = dao.getPostCount("id");
+	  
+	  int postCnt = dao.getPostCount(id);
 	  %>
 	  <%-- 게시물수 --%>
 	  <div class="pbContainer">
@@ -160,57 +166,62 @@
     <div class="container">
 
 
-
-      <div class="row">
+	
+<div class="row">
   <%
   MyPostList dao2 = new MyPostList();
-  List<Post> myPosts = dao2.getMyPosts("syr01");
+  List<Post> myPosts = dao2.getMyPosts(id);
   for(Post p:myPosts) {
   %>
     <div class="card mb-4 shadow-sm">
       <div class="card-body">
-        <p class="card-text"><%= p.getP_text() %></p>
+        <p id="postText_<%= p.getPost_id() %>"
+        class="card-text"><%= p.getP_text() %></p>
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary">더보기</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">수정<%= dao2.updateMyPost(new Post()) %></button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">삭제<%= dao2.deleteMyPost(1) %></button>
+            <button type="button"
+			id="openModalButton" class="btn btn-sm btn-outline-secondary"
+			onclick="editModal()" data-bs-toggle="modal" 
+			data-bs-target="#editModal">수정</button>
+            <button type="button"
+            class="btn btn-sm btn-outline-secondary"
+            onclick="deletePost()">삭제</button>
           </div>
           <small class="text-muted"><%= p.getP_time() %></small>
         </div>
       </div>
     </div>
   <% } %>
-      </div>
-      
-      
+</div>
       
       
     </div>
   </section>
   
   
-<!-- 모달 -->
-<div class="modal" id="editModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">게시물 수정</h5>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <form id="editForm">
-          <input type="hidden" id="postId">
-          <div class="form-group">
-            <label for="editText">내용:</label>
-            <textarea class="form-control" id="editText" rows="3"></textarea>
-          </div>
-          <button type="button" class="btn btn-primary" onclick="submitEdit()">저장</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+	<!-- 모달 창 -->
+	  <div class="modal" id="editModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title">게시물 수정</h4>
+	      </div>
+	      <form id="regFrm">
+	        <div class="modal-body">
+	          <div class="mb-3 mt-3">
+	            <label for="editText">내용:</label>
+	            <textarea class="form-control" id="editText" rows="3"></textarea>
+	          </div>
+	        </div>
+	      </form>
+	      <div class="modal-footer">
+			<button type="button" class="btn btn-primary" onclick="submitEdit()">저장</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+  
+
 
 </main>
 </body>

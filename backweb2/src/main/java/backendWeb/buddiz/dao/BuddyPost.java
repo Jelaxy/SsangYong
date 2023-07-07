@@ -17,7 +17,7 @@ public class BuddyPost {
 		    // 내 게시물 전체 수 조회
 		    public int getPostCount(String id){
 		        int postCnt = 0;
-		        String sql = "SELECT COUNT(*) FROM post WHERE user_id = ?";
+		        String sql = "SELECT COUNT(*) FROM post WHERE id = ?";
 		            
 		        try{
 		            con = DB.con();
